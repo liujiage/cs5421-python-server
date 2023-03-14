@@ -1,1 +1,4 @@
 pip install flask
+pip install virtualenv
+cd project
+.\venv\Scripts\activate.bat
