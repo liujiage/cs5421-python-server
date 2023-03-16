@@ -110,3 +110,7 @@ def json_xpath(json_data, xpath):
             break
     
     return data
+
+
+def visual(json_data):
+    return json_data

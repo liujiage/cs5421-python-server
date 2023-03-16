@@ -17,5 +17,13 @@ def query():
     except:
         return {'success': 0, 'data': {}}
 
-
+@app.route('/visual', methods=['POST'])
+def visual():
+    req = request.get_json()
+    try:
+        source = req.get('source')
+        return {'success': 1, 'data': {'result': visual(source)}}
+    except:
+        return {'success': 0, 'data': {}}
+    
 app.run(host='0.0.0.0', port=81)
