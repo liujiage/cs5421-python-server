@@ -1,13 +1,13 @@
 import json
 import re
 
-def json_xpath(json_data, xpath):
+def json_xpath(data, xpath):
    
     
-    try:
-        data = json.loads(json_data)
-    except ValueError:
-        raise ValueError("Invalid JSON")
+    # try:
+    #     data = json.loads(json_data)
+    # except ValueError:
+    #     raise ValueError("Invalid JSON")
     
     # Split the XPath 
     tokens = xpath.split("/")
