@@ -1,12 +1,8 @@
-import json
 import unittest
 
 from org.jsonpathx.helper import json_xpath
+from org.jsonpathx.services.utils import load_josn_by_file
 
-
-def load_josn_by_file(file_path):
-    with open(file_path) as json_content:
-        return json.load(json_content)
 
 class MyTestCase(unittest.TestCase):
     def test_key_find_value(self):
@@ -15,7 +11,7 @@ class MyTestCase(unittest.TestCase):
         xpath = 'name'
         res = json_xpath(json_data, xpath)
         print(res)
-        json_data = load_josn_by_file("./resources/movies.json")
+        json_data = load_josn_by_file("../resources/movies.json")
         print(json_data)
         res = json_xpath(json_data, xpath)
         print(res)
@@ -23,7 +19,7 @@ class MyTestCase(unittest.TestCase):
     def test_key_find_value_with_slash(self):
         json_data = '[{"people": [{"name": "Bre", "age": 25}, {"name": "Stephane", "age": 30}]}, {"people": [{"name": "Bre1", "age": 26}, {"name": "Stephane1", "age": 31}]}]'
         xpath = 'movies/title'
-        json_data = load_josn_by_file("./resources/movies.json")
+        json_data = load_josn_by_file("../resources/movies.json")
         res = json_xpath(json_data, xpath)
         print(res)
 

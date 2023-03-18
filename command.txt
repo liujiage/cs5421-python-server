@@ -2,3 +2,11 @@ pip install flask
 pip install virtualenv
 cd project
 .\venv\Scripts\activate.bat
+
+
+learn and reference jsonpath-ng
+pip install jsonpath-ng
+
+
+Json example resources
+https://www.ibm.com/docs/en/datapower-gateway/7.5.0?topic=json-examples
