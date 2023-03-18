@@ -24,5 +24,11 @@ class MyTestCase(unittest.TestCase):
         res = json_xpath(json_data, xpath)
         print(res)
 
+    def test_key_find_all_titles(self):
+        xpath = 'movies[*]/title'
+        json_data = load_josn_by_file("../resources/movies.json")
+        res = json_xpath(json_data, xpath)
+        print(res)
+
 if __name__ == '__main__':
     unittest.main()
