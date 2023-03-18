@@ -20,5 +20,12 @@ class MyTestCase(unittest.TestCase):
         res = json_xpath(json_data, xpath)
         print(res)
 
+    def test_(self):
+        json_data = '[{"people": [{"name": "Bre", "age": 25}, {"name": "Stephane", "age": 30}]}, {"people": [{"name": "Bre1", "age": 26}, {"name": "Stephane1", "age": 31}]}]'
+        xpath = 'movies/title'
+        json_data = load_josn_by_file("./resources/movies.json")
+        res = json_xpath(json_data, xpath)
+        print(res)
+
 if __name__ == '__main__':
     unittest.main()
