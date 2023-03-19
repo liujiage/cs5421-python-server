@@ -34,6 +34,10 @@ class MyTestCase(unittest.TestCase):
         letter = [x for x in data['movies'][0]['cast']]
         print(letter)
 
+    def test_demo4(self):
+        keyword = "movies[0].{parent.cast[:] =~ 'De Niro'}.title"
+        print(keyword)
+
 
 if __name__ == '__main__':
     unittest.main()

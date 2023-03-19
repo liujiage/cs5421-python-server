@@ -3,7 +3,7 @@ from org.jsonpathx.services.utils import print_test
 
 class MyTestCase(unittest.TestCase):
     def test_demo1(self):
-        print_test("../resources/movies.json", "$.movies[?(@.cast[:] =~ 'De Niro')].title")
+        print_test("../resources/movies.json", "$.movies[?(@.cast[:] =~ 'De Niro')]")
 
     def test_demo2(self):
         print_test("../resources/movies.json", "$.movies[*].title")
