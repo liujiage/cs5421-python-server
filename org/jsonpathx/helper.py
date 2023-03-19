@@ -20,7 +20,7 @@ def json_xpath(data, xpath):
         elif "#" in token:
             
             path, index = token.split("#")
-            getByKey = json_xpath(json.dumps(data), path.strip())   
+            getByKey = json_xpath(data, path.strip())
             if not ":" in token:
                 index = int(index)
                 data = getByKey[index] 
@@ -40,7 +40,7 @@ def json_xpath(data, xpath):
         elif "(" in token and ")" in token:
             func_name, arg_expr = token.split("(")
             arg_expr = arg_expr[:-1]
-            values = json_xpath(json.dumps(data), arg_expr.strip())    
+            values = json_xpath(data, arg_expr.strip())
             
             res = []
             for value in values:
@@ -63,7 +63,7 @@ def json_xpath(data, xpath):
             
             path, remain = token.split("[")
             filter_expr = remain[:-1]
-            withoutFilter = json_xpath(json.dumps(data), path.strip())
+            withoutFilter = json_xpath(data, path.strip())
             filter_match = re.match(r'(.+)(==|!=|<|>|<=|>=)(.+)', filter_expr)
             if filter_match:
                 key = filter_match.group(1)
