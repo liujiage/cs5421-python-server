@@ -25,13 +25,33 @@ class MyTestCase(unittest.TestCase):
         print(res)
 
 
-    # def test_function(self):
-    #     xpath = 'movies/year'
-    #     json_data = load_josn_by_file("../resources/movies.json")
-    #     res = json_xpath(json_data, xpath)
-    #     print(res)
+    def test_function(self):
 
+        json_data = load_josn_by_file("../resources/movies.json")
+        xpath = 'max(movies/year)'
+        res = json_xpath(json_data, xpath)
+        print(res)
 
+        xpath = 'min(movies/year)'
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+    def test_range_query(self):
+
+        json_data = load_josn_by_file("../resources/movies.json")
+        xpath = 'movies#0/title#1:3'
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+        # no start
+        xpath = 'movies#0/title#:3'
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+        # no end
+        xpath = 'movies#0/title#3:'
+        res = json_xpath(json_data, xpath)
+        print(res)
 
     def test_filter(self):
         xpath = 'movies[director==Quentin Tarantino]'
