@@ -13,6 +13,9 @@ class MyTestCase(unittest.TestCase):
     def test_demo3(self):
         print_test("../resources/purchase_order.json", "billTo.name")
 
+    def test_demo4(self):
+        print_test("../resources/purchase_order.json", "$.*.name")
+
 
 if __name__ == '__main__':
     unittest.main()
