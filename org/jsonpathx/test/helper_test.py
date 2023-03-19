@@ -71,6 +71,19 @@ class MyTestCase(unittest.TestCase):
         res = json_xpath(json_data, xpath)
         print(res)
 
+    def test_filter_list(self):
+        xpath = "movies[cast == 'John Travolta']"
+        json_data = load_josn_by_file("../resources/movies.json")
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+    def test_filter_index_list(self):
+        xpath = "movies[0]/cast"
+        json_data = load_josn_by_file("../resources/movies.json")
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+
 
 
 
