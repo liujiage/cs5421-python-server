@@ -3,10 +3,23 @@ pip install virtualenv
 cd project
 .\venv\Scripts\activate.bat
 
-
 learn and reference jsonpath-ng
 pip install jsonpath-ng
 
+https://github.com/h2non/jsonpath-ng (source code)
+pip install -r requirements.txt
+pip install ply
+pip install distlib
 
 Json example resources
 https://www.ibm.com/docs/en/datapower-gateway/7.5.0?topic=json-examples
+
+
+Issues and Solution
+1. pytest: ModuleNotFoundError: No module named ‘requests’
+pip install pipenv
+python -m venv ./env
+...
+https://medium.com/@dirk.avery/pytest-modulenotfounderror-no-module-named-requests-a770e6926ac5
+
+
