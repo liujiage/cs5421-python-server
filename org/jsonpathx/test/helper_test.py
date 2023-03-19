@@ -24,6 +24,17 @@ class MyTestCase(unittest.TestCase):
         res = json_xpath(json_data, xpath)
         print(res)
 
+    def test_wildcard(self):
+        xpath = 'movies/*'
+        json_data = load_josn_by_file("../resources/movies.json")
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+
+        xpath = '*'
+        res = json_xpath(json_data, xpath)
+        print(res)
+
 
     def test_function(self):
 
@@ -82,8 +93,6 @@ class MyTestCase(unittest.TestCase):
         json_data = load_josn_by_file("../resources/movies.json")
         res = json_xpath(json_data, xpath)
         print(res)
-
-
 
 
 
