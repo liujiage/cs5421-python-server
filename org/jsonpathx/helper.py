@@ -9,9 +9,31 @@ def json_xpath(data, xpath):
     # except ValueError:
     #     raise ValueError("Invalid JSON")
     
-    # Split the XPath 
+    # Split the XPath
+    if "(" in xpath and ")" in xpath:
+        func_name, arg_expr = xpath.split("(")
+        arg_expr = arg_expr[:-1]
+        values = json_xpath(data, arg_expr.strip())
+
+        res = []
+        for value in values:
+            if func_name == "max":
+                try:
+                    res.append(max(value));
+                except ValueError:
+                    data = None
+            elif func_name == "min":
+                try:
+                    res.append(min(value));
+                except ValueError:
+                    data = None
+            else:
+                raise TypeError("Invalid function name")
+        data = res
+        return data
+
     tokens = xpath.split("/")
-    
+
     for token in tokens:
         if token == "*":
             data = [v for k, v in data.items()] if isinstance(data, dict) else data
@@ -20,7 +42,7 @@ def json_xpath(data, xpath):
         elif "#" in token:
             
             path, index = token.split("#")
-            getByKey = json_xpath(json.dumps(data), path.strip())   
+            getByKey = json_xpath(data, path.strip())
             if not ":" in token:
                 index = int(index)
                 data = getByKey[index] 
@@ -37,33 +59,33 @@ def json_xpath(data, xpath):
                 
         
         # function support
-        elif "(" in token and ")" in token:
-            func_name, arg_expr = token.split("(")
-            arg_expr = arg_expr[:-1]
-            values = json_xpath(json.dumps(data), arg_expr.strip())    
-            
-            res = []
-            for value in values:
-                if func_name == "max":
-                    try:
-                        res.append(max(value));
-                    except ValueError:
-                        data = None
-                elif func_name == "min":
-                    try:
-                        res.append(min(value));
-                    except ValueError:
-                        data = None
-                else:
-                    raise TypeError("Invalid function name")
-            data = res                                
+        # elif "(" in token and ")" in token:
+        #     func_name, arg_expr = token.split("(")
+        #     arg_expr = arg_expr[:-1]
+        #     values = json_xpath(data, arg_expr.strip())
+        #
+        #     res = []
+        #     for value in values:
+        #         if func_name == "max":
+        #             try:
+        #                 res.append(max(value));
+        #             except ValueError:
+        #                 data = None
+        #         elif func_name == "min":
+        #             try:
+        #                 res.append(min(value));
+        #             except ValueError:
+        #                 data = None
+        #         else:
+        #             raise TypeError("Invalid function name")
+        #     data = res
 
                 
         elif "[" in token and "]" in token:
             
             path, remain = token.split("[")
             filter_expr = remain[:-1]
-            withoutFilter = json_xpath(json.dumps(data), path.strip())
+            withoutFilter = json_xpath(data, path.strip())
             filter_match = re.match(r'(.+)(==|!=|<|>|<=|>=)(.+)', filter_expr)
             if filter_match:
                 key = filter_match.group(1)
