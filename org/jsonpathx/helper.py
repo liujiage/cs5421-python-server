@@ -36,8 +36,8 @@ def json_xpath(data, xpath):
 
     for token in tokens:
         if token == "*":
-            data = [v for k, v in data.items()] if isinstance(data, dict) else data
-        
+            # data = [v for k, v in data.items()] if isinstance(data, dict) else data
+            data = data
         #range support
         elif "#" in token:
             
