@@ -1,6 +1,7 @@
 import unittest
 
 from org.jsonpathx.services.utils import load_josn_by_file
+from org.jsonpathx.services.parser import Parser
 
 
 class MyTestCase(unittest.TestCase):
@@ -36,8 +37,13 @@ class MyTestCase(unittest.TestCase):
 
     def test_demo4(self):
         keyword = "movies[0].{parent.cast[:] =~ 'De Niro'}.title"
-        print(keyword)
+        res = Parser().parse(keyword)
+        print(res)
 
+    def test_demo5(self):
+        keyword = "movies[0].parent.{cast[:] =~ 'De Niro'}.title[:]"
+        res = Parser().parse(keyword)
+        print(res)
 
 if __name__ == '__main__':
     unittest.main()
