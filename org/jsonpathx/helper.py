@@ -2,10 +2,7 @@ import json
 import re
 
 
-result = []
-
 def helper(data, index, res):
-    global result
     for dd in data:
         if not isinstance(dd, list):
             res.append(data[index])
@@ -15,7 +12,6 @@ def helper(data, index, res):
 
 
 def helper(data, start, end, res):
-    global result
     for dd in data:
         if not isinstance(dd, list):
             res.append(data[start: end])
@@ -24,9 +20,20 @@ def helper(data, start, end, res):
             helper(dd, start, end, res)
 
 
+def recursive_descent(key, data, res):
+    if isinstance(data, list):
+        for dd in data:
+            recursive_descent(key, dd, res)
+
+    if isinstance(data, dict):
+        for k, value in data.items():
+            if k == key:
+                res.append(value)
+            else:
+                recursive_descent(key, data.get(k), res)
+
 
 def json_xpath(data, xpath):
-
     if "(" in xpath and ")" in xpath:
         func_name, arg_expr = xpath.split("(")
         arg_expr = arg_expr[:-1]
@@ -55,10 +62,9 @@ def json_xpath(data, xpath):
         if token == "*":
             # data = [v for k, v in data.items()] if isinstance(data, dict) else data
             data = data
-        #range support
 
         elif "#" in token:
-            
+
             path, index = token.split("#")
             if not path:
                 if ":" not in token:
@@ -66,14 +72,6 @@ def json_xpath(data, xpath):
                     global result
                     res = []
                     helper(data, index, res)
-                    # flag = False
-                    # for dd in data:
-                    #     if not isinstance(dd, list):
-                    #         flag = True
-                    #         break
-                    #     res.append([dd[index] if isinstance(dd, list) else None])
-                    # if flag:
-                    #     res = data[index]
                     data = res
                 else:
                     if not isinstance(data, list):
@@ -82,8 +80,6 @@ def json_xpath(data, xpath):
                     start = int(start) if start else 0
                     end = int(end) if end else len(data)
                     res = []
-                    # for dd in data:
-                    #     res.append([dd[start:end] if isinstance(dd, list) else None])
                     helper(data, start, end, res)
                     data = res
 
@@ -92,7 +88,7 @@ def json_xpath(data, xpath):
             getByKey = json_xpath(data, path.strip())
             if not ":" in token:
                 index = int(index)
-                data = getByKey[index] 
+                data = getByKey[index]
             else:
                 if not isinstance(getByKey, list):
                     raise TypeError("range operator must work on lists")
@@ -103,10 +99,15 @@ def json_xpath(data, xpath):
                     raise IndexError("index out of bounds")
                 data = getByKey[start:end]
 
+        elif ".." in token:
+            key = token[2:]
+            res = []
+            recursive_descent(key, data, res)
+            data = res
 
-                
+
         elif "[" in token and "]" in token:
-            
+
             path, remain = token.split("[")
             filter_expr = remain[:-1]
             withoutFilter = json_xpath(data, path.strip())
@@ -117,10 +118,10 @@ def json_xpath(data, xpath):
                 value = filter_match.group(3)
 
                 if value.isdigit():
-                    value = int(value)  
+                    value = int(value)
                 res = []
-                for w in withoutFilter: 
-                                  
+                for w in withoutFilter:
+
                     if op == '==':
                         res.append([d for d in w if isinstance(d, dict) and d.get(key, None) == value])
                     elif op == '!=':
@@ -138,28 +139,28 @@ def json_xpath(data, xpath):
                     elif op == ' NOTHAS ':
                         res.append([d for d in w if isinstance(d, dict) and value not in d.get(key, None)])
                 data = res
-                                
+
             else:
                 raise TypeError("wrong filter format")
             if not data:
                 break
-                
-        
+
+
         else:
             if not isinstance(data, list):
-                data = [data]             
-            
+                data = [data]
+
             res = []
             for dd in data:
-                if(isinstance(dd, list)):    
+                if (isinstance(dd, list)):
                     res.append([d.get(token, None) for d in dd if isinstance(d, dict)])
                 else:
-                    res.extend([dd.get(token, None) if isinstance(dd, dict) else None])                         
+                    res.extend([dd.get(token, None) if isinstance(dd, dict) else None])
             data = res
-                                      
+
         if data is None:
             break
-    
+
     return data
 
 

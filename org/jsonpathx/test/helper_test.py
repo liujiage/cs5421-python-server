@@ -138,7 +138,17 @@ class MyTestCase(unittest.TestCase):
         res = json_xpath(json_data, xpath)
         print(res)
 
+    def test_movies2_recursive_descent(self):
 
+        json_data = load_josn_by_file("../resources/movies2.json")
+
+        xpath = "..cast"
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+        xpath = "..parent"
+        res = json_xpath(json_data, xpath)
+        print(res)
 
 
 
