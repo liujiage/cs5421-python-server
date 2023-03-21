@@ -1,16 +1,32 @@
 import json
 import re
-import difflib
+
+
+result = []
+
+def helper(data, index, res):
+    global result
+    for dd in data:
+        if not isinstance(dd, list):
+            res.append(data[index])
+            break
+        else:
+            helper(dd, index, res)
+
+
+def helper(data, start, end, res):
+    global result
+    for dd in data:
+        if not isinstance(dd, list):
+            res.append(data[start: end])
+            break
+        else:
+            helper(dd, start, end, res)
+
 
 
 def json_xpath(data, xpath):
 
-    # try:
-    #     data = json.loads(json_data)
-    # except ValueError:
-    #     raise ValueError("Invalid JSON")
-    
-    # Split the XPath
     if "(" in xpath and ")" in xpath:
         func_name, arg_expr = xpath.split("(")
         arg_expr = arg_expr[:-1]
@@ -33,16 +49,46 @@ def json_xpath(data, xpath):
         data = res
         return data
 
-    tokens = xpath.split("/")
+    tokens = re.split("[/]", xpath)
 
     for token in tokens:
         if token == "*":
             # data = [v for k, v in data.items()] if isinstance(data, dict) else data
             data = data
         #range support
+
         elif "#" in token:
             
             path, index = token.split("#")
+            if not path:
+                if ":" not in token:
+                    index = int(index)
+                    global result
+                    res = []
+                    helper(data, index, res)
+                    # flag = False
+                    # for dd in data:
+                    #     if not isinstance(dd, list):
+                    #         flag = True
+                    #         break
+                    #     res.append([dd[index] if isinstance(dd, list) else None])
+                    # if flag:
+                    #     res = data[index]
+                    data = res
+                else:
+                    if not isinstance(data, list):
+                        raise TypeError("range operator must work on lists")
+                    start, end = index.split(":")
+                    start = int(start) if start else 0
+                    end = int(end) if end else len(data)
+                    res = []
+                    # for dd in data:
+                    #     res.append([dd[start:end] if isinstance(dd, list) else None])
+                    helper(data, start, end, res)
+                    data = res
+
+                continue
+
             getByKey = json_xpath(data, path.strip())
             if not ":" in token:
                 index = int(index)
