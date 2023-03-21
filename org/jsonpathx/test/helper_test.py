@@ -83,16 +83,55 @@ class MyTestCase(unittest.TestCase):
         print(res)
 
     def test_filter_list(self):
-        xpath = "movies[cast == 'John Travolta']"
+        xpath = "movies[cast HAS John Travolta]"
         json_data = load_josn_by_file("../resources/movies.json")
         res = json_xpath(json_data, xpath)
         print(res)
 
-    def test_filter_index_list(self):
-        xpath = "movies#0/cast#0"
+        xpath = "movies[cast NOTHAS John Travolta]"
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+    def test_index_list(self):
+        xpath = "movies#0/cast#0:2"
         json_data = load_josn_by_file("../resources/movies.json")
         res = json_xpath(json_data, xpath)
         print(res)
+
+    def test_movies2_key(self):
+        xpath = 'movies/parent/cast'
+        json_data = load_josn_by_file("../resources/movies2.json")
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+
+    def test_movies2_index(self):
+        xpath = 'movies#0/parent#1/cast'
+        json_data = load_josn_by_file("../resources/movies2.json")
+        res = json_xpath(json_data, xpath)
+        # print(res)
+
+        xpath = 'movies#0/parent#0/cast#0:1'
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+    def test_movies2_filter_list(self):
+        xpath = "movies/parent[cast HAS Harvey Keitel]"
+        json_data = load_josn_by_file("../resources/movies2.json")
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+        xpath = "movies/parent[cast NOTHAS Harvey Keitel]"
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+    def test_movies2_range(self):
+        xpath = 'movies#0/parent#0:2/cast'
+        json_data = load_josn_by_file("../resources/movies2.json")
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+
 
 
 

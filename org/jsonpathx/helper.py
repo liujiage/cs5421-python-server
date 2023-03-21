@@ -1,9 +1,10 @@
 import json
 import re
+import difflib
+
 
 def json_xpath(data, xpath):
-   
-    
+
     # try:
     #     data = json.loads(json_data)
     # except ValueError:
@@ -55,30 +56,7 @@ def json_xpath(data, xpath):
                 if end > len(data):
                     raise IndexError("index out of bounds")
                 data = getByKey[start:end]
-            
-                
-        
-        # function support
-        # elif "(" in token and ")" in token:
-        #     func_name, arg_expr = token.split("(")
-        #     arg_expr = arg_expr[:-1]
-        #     values = json_xpath(data, arg_expr.strip())
-        #
-        #     res = []
-        #     for value in values:
-        #         if func_name == "max":
-        #             try:
-        #                 res.append(max(value));
-        #             except ValueError:
-        #                 data = None
-        #         elif func_name == "min":
-        #             try:
-        #                 res.append(min(value));
-        #             except ValueError:
-        #                 data = None
-        #         else:
-        #             raise TypeError("Invalid function name")
-        #     data = res
+
 
                 
         elif "[" in token and "]" in token:
@@ -86,11 +64,12 @@ def json_xpath(data, xpath):
             path, remain = token.split("[")
             filter_expr = remain[:-1]
             withoutFilter = json_xpath(data, path.strip())
-            filter_match = re.match(r'(.+)(==|!=|<|>|<=|>=)(.+)', filter_expr)
+            filter_match = re.match(r'(.+)(==|!=|<|>|<=|>=| HAS | NOTHAS )(.+)', filter_expr)
             if filter_match:
                 key = filter_match.group(1)
                 op = filter_match.group(2)
                 value = filter_match.group(3)
+
                 if value.isdigit():
                     value = int(value)  
                 res = []
@@ -108,6 +87,10 @@ def json_xpath(data, xpath):
                         res.append([d for d in w if isinstance(d, dict) and d.get(key, None) <= value])
                     elif op == '>=':
                         res.append([d for d in w if isinstance(d, dict) and d.get(key, None) >= value])
+                    elif op == ' HAS ':
+                        res.append([d for d in w if isinstance(d, dict) and value in d.get(key, None)])
+                    elif op == ' NOTHAS ':
+                        res.append([d for d in w if isinstance(d, dict) and value not in d.get(key, None)])
                 data = res
                                 
             else:
