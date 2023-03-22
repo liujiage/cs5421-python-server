@@ -116,6 +116,8 @@ class MyTestCase(unittest.TestCase):
         res = json_xpath(json_data, xpath)
         print(res)
 
+
+
     def test_movies2_index(self):
 
         json_data = load_josn_by_file("../resources/movies2.json")
@@ -126,6 +128,21 @@ class MyTestCase(unittest.TestCase):
     def test_movies2_range(self):
         xpath = 'movies#0/parent#0/cast#0/#1:3'
         json_data = load_josn_by_file("../resources/movies2.json")
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+    def test_movie2_filter(self):
+        json_data = load_josn_by_file("../resources/movies2.json")
+
+        xpath = 'movies[year>1994]'
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+        xpath = 'movies[year>1992]'
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+        xpath = 'movies[year>1991]'
         res = json_xpath(json_data, xpath)
         print(res)
 
@@ -147,6 +164,41 @@ class MyTestCase(unittest.TestCase):
         print(res)
 
         xpath = "..parent"
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+    def test_combine_recursive_descent_index(self):
+        json_data = load_josn_by_file("../resources/movies2.json")
+        xpath = "..cast#0/#0"
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+    def test_combine_recursive_descent_range(self):
+        json_data = load_josn_by_file("../resources/movies2.json")
+        xpath = "..cast#0:2/#0:3"
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+    def test_combine_function_filter_key(self):
+        json_data = load_josn_by_file("../resources/movies.json")
+        xpath = 'min(movies[year>1994]/year)'
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+        xpath = 'max(movies[year<1994]/year)'
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+
+    def test_combine_filter_index(self):
+        json_data = load_josn_by_file("../resources/movies2.json")
+        xpath = 'movies[year>1991]#0/#1'
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+    def test_combine_rangeQuery_filter(self):
+        json_data = load_josn_by_file("../resources/movies2.json")
+        xpath = 'movies#0:2[year>1991]'
         res = json_xpath(json_data, xpath)
         print(res)
 
