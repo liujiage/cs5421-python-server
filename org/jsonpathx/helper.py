@@ -51,17 +51,17 @@ def filter_helper(data, key, value, op, res):
                 res.append([data])
 
 
-def recursive_descent(key, data, res):
+def recursive_descent_helper(key, data, res):
     if isinstance(data, list):
         for dd in data:
-            recursive_descent(key, dd, res)
+            recursive_descent_helper(key, dd, res)
 
     if isinstance(data, dict):
         for k, value in data.items():
             if k == key:
                 res.append(value)
             else:
-                recursive_descent(key, data.get(k), res)
+                recursive_descent_helper(key, data.get(k), res)
 
 
 def json_xpath(data, xpath):
@@ -133,7 +133,7 @@ def json_xpath(data, xpath):
         elif ".." in token:
             key = token[2:]
             res = []
-            recursive_descent(key, data, res)
+            recursive_descent_helper(key, data, res)
             data = res
 
 
