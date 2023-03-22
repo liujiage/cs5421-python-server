@@ -2,22 +2,22 @@ import json
 import re
 
 
-def helper(data, index, res):
+def help1(data, index, res):
     for dd in data:
         if not isinstance(dd, list):
             res.append(data[index])
             break
         else:
-            helper(dd, index, res)
+            help1(dd, index, res)
 
 
-def helper(data, start, end, res):
+def help2(data, start, end, res):
     for dd in data:
         if not isinstance(dd, list):
             res.append(data[start: end])
             break
         else:
-            helper(dd, start, end, res)
+            help2(dd, start, end, res)
 
 
 def recursive_descent(key, data, res):
@@ -71,7 +71,7 @@ def json_xpath(data, xpath):
                     index = int(index)
                     global result
                     res = []
-                    helper(data, index, res)
+                    help1(data, index, res)
                     data = res
                 else:
                     if not isinstance(data, list):
@@ -80,7 +80,7 @@ def json_xpath(data, xpath):
                     start = int(start) if start else 0
                     end = int(end) if end else len(data)
                     res = []
-                    helper(data, start, end, res)
+                    help2(data, start, end, res)
                     data = res
 
                 continue

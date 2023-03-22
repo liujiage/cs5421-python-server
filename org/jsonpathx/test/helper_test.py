@@ -12,7 +12,6 @@ class MyTestCase(unittest.TestCase):
         res = json_xpath(json_data, xpath)
         print(res)
 
-
     # in this code, when using index to find, every elements on paths need an index
     def test_index(self):
         xpath = 'movies#0/title#0'
@@ -33,7 +32,6 @@ class MyTestCase(unittest.TestCase):
         xpath = '*'
         res = json_xpath(json_data, xpath)
         print(res)
-
 
     def test_function(self):
 
@@ -92,7 +90,7 @@ class MyTestCase(unittest.TestCase):
         print(res)
 
     def test_index_list(self):
-        xpath = "movies#0/cast#0:2/#0"
+        xpath = "movies#0/cast#0:4/#0"
         json_data = load_josn_by_file("../resources/movies.json")
         res = json_xpath(json_data, xpath)
         print(res)
@@ -103,7 +101,7 @@ class MyTestCase(unittest.TestCase):
         print(res)
 
     def test_range_list(self):
-        xpath = "movies#0/cast#0:2/#1:3"
+        xpath = "movies#0/cast#0:3/#1:3"
         json_data = load_josn_by_file("../resources/movies.json")
         res = json_xpath(json_data, xpath)
         print(res)
@@ -114,6 +112,9 @@ class MyTestCase(unittest.TestCase):
         res = json_xpath(json_data, xpath)
         print(res)
 
+        xpath = 'movies/title'
+        res = json_xpath(json_data, xpath)
+        print(res)
 
     def test_movies2_index(self):
 
@@ -141,7 +142,6 @@ class MyTestCase(unittest.TestCase):
     def test_movies2_recursive_descent(self):
 
         json_data = load_josn_by_file("../resources/movies2.json")
-
         xpath = "..cast"
         res = json_xpath(json_data, xpath)
         print(res)
