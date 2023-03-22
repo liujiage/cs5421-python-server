@@ -190,17 +190,34 @@ class MyTestCase(unittest.TestCase):
         print(res)
 
 
-    def test_combine_filter_index(self):
+    def test_combine_filter_index_key(self):
         json_data = load_josn_by_file("../resources/movies2.json")
-        xpath = 'movies[year>1991]#0/#1'
+        xpath = 'movies[year>1991]#0'
         res = json_xpath(json_data, xpath)
         print(res)
 
-    def test_combine_rangeQuery_filter(self):
-        json_data = load_josn_by_file("../resources/movies2.json")
-        xpath = 'movies#0:2[year>1991]'
+        xpath = 'movies[year>1991]#0/title'
         res = json_xpath(json_data, xpath)
         print(res)
+
+    def test_combine_index_filters(self):
+        json_data = load_josn_by_file("../resources/movies2.json")
+        xpath = 'movies#0/parent#0/[cast HAS Harvey Keitel]'
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+        xpath = 'movies#0/parent#0/[cast NOTHAS Harvey Keitel]'
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+        xpath = 'movies#0/parent#1/[cast NOTHAS Harvey Keitel]'
+        res = json_xpath(json_data, xpath)
+        print(res)
+
+        xpath = 'movies#0/parent#1/[cast HAS Harvey Keitel]'
+        res = json_xpath(json_data, xpath)
+        print(res)
+
 
 
 

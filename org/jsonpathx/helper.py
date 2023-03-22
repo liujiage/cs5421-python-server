@@ -2,22 +2,53 @@ import json
 import re
 
 
-def help1(data, index, res):
+def index_helper(data, index, res):
     for dd in data:
         if not isinstance(dd, list):
             res.append(data[index])
             break
         else:
-            help1(dd, index, res)
+            index_helper(dd, index, res)
 
 
-def help2(data, start, end, res):
+def range_helper(data, start, end, res):
     for dd in data:
         if not isinstance(dd, list):
             res.append(data[start: end])
             break
         else:
-            help2(dd, start, end, res)
+            range_helper(dd, start, end, res)
+
+
+def filter_helper(data, key, value, op, res):
+    if not isinstance(data, dict):
+        for dd in data:
+            filter_helper(dd, key, value, op, res)
+    else:
+        if op == '==':
+            if data.get(key, None) == value:
+                res.append([data])
+        elif op == '!=':
+            if data.get(key, None) != value:
+                res.append([data])
+        elif op == '<':
+            if data.get(key, None) < value:
+                res.append([data])
+        elif op == '>':
+            if data.get(key, None) > value:
+                res.append([data])
+        elif op == '<=':
+            if data.get(key, None) <= value:
+                res.append([data])
+        elif op == '>=':
+            if data.get(key, None) >= value:
+                res.append([data])
+        elif op == ' HAS ':
+            if value in data.get(key, None):
+                res.append([data])
+        elif op == ' NOTHAS ':
+            if value not in data.get(key, None):
+                res.append([data])
 
 
 def recursive_descent(key, data, res):
@@ -71,7 +102,7 @@ def json_xpath(data, xpath):
                     index = int(index)
                     global result
                     res = []
-                    help1(data, index, res)
+                    index_helper(data, index, res)
                     data = res
                 else:
                     if not isinstance(data, list):
@@ -80,7 +111,7 @@ def json_xpath(data, xpath):
                     start = int(start) if start else 0
                     end = int(end) if end else len(data)
                     res = []
-                    help2(data, start, end, res)
+                    range_helper(data, start, end, res)
                     data = res
 
                 continue
@@ -110,7 +141,10 @@ def json_xpath(data, xpath):
 
             path, remain = token.split("[")
             filter_expr = remain[:-1]
-            withoutFilter = json_xpath(data, path.strip())
+            if path:
+                withoutFilter = json_xpath(data, path.strip())
+            else:
+                withoutFilter = data
             filter_match = re.match(r'(.+)(==|!=|<|>|<=|>=| HAS | NOTHAS )(.+)', filter_expr)
             if filter_match:
                 key = filter_match.group(1)
@@ -120,24 +154,7 @@ def json_xpath(data, xpath):
                 if value.isdigit():
                     value = int(value)
                 res = []
-                for w in withoutFilter:
-
-                    if op == '==':
-                        res.append([d for d in w if isinstance(d, dict) and d.get(key, None) == value])
-                    elif op == '!=':
-                        res.append([d for d in w if isinstance(d, dict) and d.get(key, None) != value])
-                    elif op == '<':
-                        res.append([d for d in w if isinstance(d, dict) and d.get(key, None) < value])
-                    elif op == '>':
-                        res.append([d for d in w if isinstance(d, dict) and d.get(key, None) > value])
-                    elif op == '<=':
-                        res.append([d for d in w if isinstance(d, dict) and d.get(key, None) <= value])
-                    elif op == '>=':
-                        res.append([d for d in w if isinstance(d, dict) and d.get(key, None) >= value])
-                    elif op == ' HAS ':
-                        res.append([d for d in w if isinstance(d, dict) and value in d.get(key, None)])
-                    elif op == ' NOTHAS ':
-                        res.append([d for d in w if isinstance(d, dict) and value not in d.get(key, None)])
+                filter_helper(withoutFilter, key, value, op, res)
                 data = res
 
             else:
