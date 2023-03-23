@@ -13,17 +13,33 @@ def query():
     try:
         source = req.get('source')
         query = req.get('query')
-        return {'success': 1, 'data': {'result': json_xpath(source, query)}}
+        return {
+            'error': 0,
+            'error_msg': '', 
+            'data': json_xpath(source, query)
+        }
     except:
-        return {'success': 0, 'data': {}}
+        return {
+            'error': 1,
+            'error_msg': 'Error', 
+            'data': ''
+        }
 
 @app.route('/visual', methods=['POST'])
 def visual():
     req = request.get_json()
     try:
         source = req.get('source')
-        return {'success': 1, 'data': {'result': visual(source)}}
+        return {
+            'error': 0,
+            'error_msg': '', 
+            'data': visual(source)
+        }
     except:
-        return {'success': 0, 'data': {}}
+        return {
+            'error': 1,
+            'error_msg': 'Error', 
+            'data': ''
+        }
     
 app.run(host='0.0.0.0', port=81)
