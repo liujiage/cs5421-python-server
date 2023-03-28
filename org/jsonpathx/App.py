@@ -42,4 +42,12 @@ def visual():
             'data': ''
         }
     
+@app.route('/expressions', methods=['GET'])
+def expressions():
+    return {
+        'error': 0,
+        'error_msg': '',
+        'data': 'syntax definition'
+    }
+    
 app.run(host='0.0.0.0', port=81)
