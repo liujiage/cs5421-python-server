@@ -24,5 +24,6 @@ https://medium.com/@dirk.avery/pytest-modulenotfounderror-no-module-named-reques
 
 install
 pip freeze > requirements.txt
+pip install -r requirements.txt
 
 
