@@ -45,5 +45,10 @@ class MyTestCase(unittest.TestCase):
         res = Parser().parse(keyword)
         print(res)
 
+    def test_demo6(self):
+        keyword = "cast[:] =~ 'De Niro'"
+        res = Parser().parse(keyword)
+        print(res)
+
 if __name__ == '__main__':
     unittest.main()
