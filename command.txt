@@ -22,4 +22,7 @@ python -m venv ./env
 ...
 https://medium.com/@dirk.avery/pytest-modulenotfounderror-no-module-named-requests-a770e6926ac5
 
+install
+pip freeze > requirements.txt
+
 
