@@ -36,12 +36,17 @@ class MyTestCase(unittest.TestCase):
         print(letter)
 
     def test_demo4(self):
-        keyword = "movies[0].{parent.cast[:] =~ 'De Niro'}.title"
+        keyword = "movies[0].{parent.cast[:] =~ 'De Niro'}.title.parent.child[0].name"
         res = Parser().parse(keyword)
         print(res)
 
     def test_demo5(self):
         keyword = "movies[0].parent.{cast[:] =~ 'De Niro'}.title[:]"
+        res = Parser().parse(keyword)
+        print(res)
+
+    def test_demo6(self):
+        keyword = "cast[:] =~ 'De Niro'"
         res = Parser().parse(keyword)
         print(res)
 
