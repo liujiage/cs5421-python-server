@@ -181,5 +181,5 @@ def json_xpath(data, xpath):
     return data
 
 
-def visual(json_data):
+def visualize(json_data):
     return json_data

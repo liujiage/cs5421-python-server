@@ -1,5 +1,5 @@
 from flask import Flask, request
-from helper import json_xpath
+from helper import json_xpath, visualize
 
 app = Flask(__name__)
 
@@ -30,10 +30,11 @@ def visual():
     req = request.get_json()
     try:
         source = req.get('source')
+        data = visualize(source)
         return {
             'error': 0,
             'error_msg': '', 
-            'data': visual(source)
+            'data': data
         }
     except:
         return {
@@ -44,10 +45,19 @@ def visual():
     
 @app.route('/expressions', methods=['GET'])
 def expressions():
+    syntax = """parse keyword
+input:  movies[0].parent.{cast[:] =~ 'De Niro'}.title[:]...
+output: ['element:movies', 'slice:[0]', 'element:parent', "query:{cast[:] =~ 'De Niro'}", 'element:title', 'slice:[:]']...
+_syntax_next = "."
+_syntax_slice_left = "["
+_syntax_slice_right = "]"
+_syntax_query_left = "{"
+_syntax_query_right = "}"
+"""
     return {
         'error': 0,
         'error_msg': '',
-        'data': 'syntax definition'
+        'data': syntax
     }
     
-app.run(host='0.0.0.0', port=81)
+app.run(host='127.0.0.1', port=81)
