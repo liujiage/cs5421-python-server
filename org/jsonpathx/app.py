@@ -45,15 +45,20 @@ def visual():
     
 @app.route('/expressions', methods=['GET'])
 def expressions():
-    syntax = """parse keyword
-input:  movies[0].parent.{cast[:] =~ 'De Niro'}.title[:]...
-output: ['element:movies', 'slice:[0]', 'element:parent', "query:{cast[:] =~ 'De Niro'}", 'element:title', 'slice:[:]']...
-_syntax_next = "."
-_syntax_slice_left = "["
-_syntax_slice_right = "]"
-_syntax_query_left = "{"
-_syntax_query_right = "}"
-"""
+    syntax = [
+        {
+            'id': 1,
+            'expression': "$",
+            'example': '$',
+            'description': 'Select the root object'
+        },
+        {
+            'id': 2,
+            'expression': '[]',
+            'example': 'movie[0]',
+            'description': 'Select the child object'
+        }
+    ]
     return {
         'error': 0,
         'error_msg': '',

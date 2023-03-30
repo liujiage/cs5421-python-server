@@ -177,8 +177,10 @@ def json_xpath(data, xpath):
 
         if data is None:
             break
-
-    return data
+    
+    if len(data) > 0:
+        return data
+    return None
 
 
 def visualize(json_data):
