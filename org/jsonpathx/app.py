@@ -1,5 +1,7 @@
 from flask import Flask, request
 from helper import json_xpath, visualize
+import json
+import codecs
 
 app = Flask(__name__)
 
@@ -13,11 +15,19 @@ def query():
     try:
         source = req.get('source')
         query = req.get('query')
-        return {
-            'error': 0,
-            'error_msg': '', 
-            'data': json_xpath(source, query)
-        }
+        res = json_xpath(source, query)
+        if res[0] != None:
+            return {
+                'error': 0,
+                'error_msg': '', 
+                'data': res
+            }
+        else:
+            return {
+                'error': 0,
+                'error_msg': '', 
+                'data': None
+            }
     except:
         return {
             'error': 1,
@@ -30,6 +40,7 @@ def visual():
     req = request.get_json()
     try:
         source = req.get('source')
+        source = json.loads(source)
         data = visualize(source)
         return {
             'error': 0,

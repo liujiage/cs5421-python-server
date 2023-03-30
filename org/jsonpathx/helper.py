@@ -85,7 +85,9 @@ def json_xpath(data, xpath):
             else:
                 raise TypeError("Invalid function name")
         data = res
-        return data
+        if len(data) > 0:
+            return data
+        return None
 
     tokens = re.split("[/]", xpath)
 
