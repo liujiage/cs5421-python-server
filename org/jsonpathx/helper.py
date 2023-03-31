@@ -1,6 +1,6 @@
 import json
 import re
-
+import ply_paser.parser
 
 def index_helper(data, index, res):
     for dd in data:
@@ -187,3 +187,88 @@ def json_xpath(data, xpath):
 
 def visualize(json_data):
     return json_data
+
+def convert(source, query):
+    result = None
+    former_lhs = None
+    assert type(query) == tuple or query == '$' or query == '*'
+    if query == '$':
+        return source
+    elif query == '*':
+        return 
+    
+    rel = query[0]
+    lhs = query[1]
+    if type(lhs) == tuple:
+            lhs = convert(source, lhs)
+    elif lhs == '$' or '@':
+            former_lhs = lhs
+            lhs = source
+    rhs = trans(lhs, query[2])
+    try:
+        if rel == 'c' and former_lhs != '@':            
+            if type(rhs) == str:
+                if rhs == '*':
+                    result = lhs
+                else:
+                    result = lhs[rhs]
+            elif type(rhs) == list:
+                result = [lhs[i] for i in rhs]
+            elif type(rhs) == int:
+                result = lhs[rhs]
+                
+            
+        elif rel == '=':
+            result = lhs.index(rhs)
+
+        elif rel == '!':
+            result = [index for index, value in enumerate(lhs) if value != rhs]
+        
+        elif rel == '<':
+            result = [index for index, value in enumerate(lhs) if value < rhs]
+
+        elif rel == 'l':
+            result = [index for index, value in enumerate(lhs) if value <= rhs]
+
+        elif rel == '>':
+            result = [index for index, value in enumerate(lhs) if value > rhs]
+
+        elif rel == 'g':
+            result = [index for index, value in enumerate(lhs) if value >= rhs]
+
+        elif rel == 's' or former_lhs == '@':
+            result = [item[rhs] for item in lhs]
+        
+        else:
+            print("Error")
+
+        return result
+    except Exception as e:
+        print(e)
+        return "Error occurs"
+
+def trans(lhs, rhs):
+    if type(rhs) == tuple:
+        if rhs[0] == ':':
+            assert type(rhs[1]) == int
+            assert type(rhs[2]) == int
+            assert rhs[2] > rhs[1]
+            return list(range(rhs[1], rhs[2], 1))
+        else:
+            return convert(lhs, rhs)
+    elif type(rhs) == list:
+        return rhs
+    elif type(rhs) == str:
+        return rhs
+    elif type(rhs) == int:
+        return rhs
+    else:
+        print("Error: %s" % rhs)
+        return
+
+
+def jsonx_path_lalr(source, query):
+    parser = parser.JsonPathXParser()
+    parser.build()
+    res = parser.parser.parse(query)
+    return convert(source, res)
