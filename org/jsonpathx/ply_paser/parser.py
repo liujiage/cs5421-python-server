@@ -11,20 +11,28 @@ class JsonPathXParser(object):
     def p_jsonx(self, p):
         '''
         jsonx : expression
+            | ROOT
             | empty
         '''
         p[0] = p[1]
 
     def p_expression(self, p):
         '''
-        expression : NAME LBRACKET expression RBRACKET
-                | NAME SIGDOT NAME
+        expression : ROOT LBRACKET expression RBRACKET
+                | ROOT SIGDOT NAME
                 | expression LBRACKET expression RBRACKET
                 | expression SIGDOT NAME
                 | AT LBRACKET expression RBRACKET
                 | AT SIGDOT NAME
         '''
         p[0] = ('c', p[1], p[3])
+    
+    def p_expression_brack_before(self, p):
+        '''
+        expression : LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+                   | LBRACKET expression RBRACKET SIGDOT NAME
+        '''
+        p[0] = ('c', p[1], p[4])
 
     def p_expression_filter(self, p):
         '''

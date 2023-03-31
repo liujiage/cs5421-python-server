@@ -26,7 +26,8 @@ class JsonPathXLexer(object):
         'GREAT',
         'NOTLT',
         'LPARE',
-        'RPARE'
+        'RPARE',
+        'ROOT'
     ]
 
     # Regular expression rules for simple tokens
@@ -48,6 +49,7 @@ class JsonPathXLexer(object):
     t_NOTLT = r'\>\='
     t_LPARE = r'\('
     t_RPARE = r'\)'
+    t_ROOT = r'\$'
 
     # A regular expression rule with some action code
     def t_NUMBER(self, t):
@@ -87,4 +89,4 @@ if __name__ == "__main__":
     # Build the lexer and try it out
     lexer = JsonPathXLexer()
     lexer.build()           # Build the lexer
-    lexer.test('movie[1:10]["person"]')     # Test it
+    lexer.test('$.movie.*')     # Test it

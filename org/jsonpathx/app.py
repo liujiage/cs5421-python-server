@@ -16,6 +16,7 @@ def query():
         source = req.get('source')
         query = req.get('query')
         res = json_xpath(json.loads(source), query)
+        print(type(json.loads(source)))
         if res[0] != None:
             return {
                 'error': 0,
