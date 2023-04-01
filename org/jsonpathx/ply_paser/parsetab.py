@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ALLFLD AT COLON COMMA DOUDOT EQUAL GREAT LBRACKET LESST LPARE NAME NOTEQ NOTGT NOTLT NUMBER QMARK QUOTE RBRACKET RPARE SIGDOT\n        jsonx : expression\n            | empty\n        \n        expression : NAME LBRACKET expression RBRACKET\n                | NAME SIGDOT NAME\n                | expression LBRACKET expression RBRACKET\n                | expression SIGDOT NAME\n                | AT LBRACKET expression RBRACKET\n                | AT SIGDOT NAME\n        \n        expression : QMARK LPARE condition RPARE\n        \n        condition : expression EQUAL expression\n        \n        condition : expression NOTEQ expression\n        \n        condition : expression LESST expression\n        \n        condition : expression NOTGT expression\n        \n        condition : expression GREAT expression\n        \n        condition : expression NOTLT expression\n        \n        expression : NAME DOUDOT NAME\n                | expression DOUDOT NAME\n        \n        expression : NUMBER COMMA NUMBER\n                | expression COMMA NUMBER\n        \n        expression : ALLFLD\n        \n        expression : expression COLON expression\n        \n        expression : QUOTE NAME QUOTE\n        \n        expression : NUMBER\n        \n        empty : \n        '
+_lr_signature = 'ALLFLD AT COLON COMMA DOUDOT EQUAL GREAT LBRACKET LESST LPARE NAME NOTEQ NOTGT NOTLT NUMBER QMARK QUOTE RBRACKET ROOT RPARE SIGDOT\n        jsonx : expression\n            | ROOT\n            | empty\n        \n        expression : ROOT LBRACKET expression RBRACKET\n                | ROOT SIGDOT NAME\n                | expression LBRACKET expression RBRACKET\n                | expression SIGDOT NAME\n                | AT LBRACKET expression RBRACKET\n                | AT SIGDOT NAME\n        \n        expression : LBRACKET expression RBRACKET LBRACKET expression RBRACKET\n                   | LBRACKET expression RBRACKET SIGDOT NAME\n        \n        expression : QMARK LPARE condition RPARE\n        \n        condition : expression EQUAL expression\n        \n        condition : expression NOTEQ expression\n        \n        condition : expression LESST expression\n        \n        condition : expression NOTGT expression\n        \n        condition : expression GREAT expression\n        \n        condition : expression NOTLT expression\n        \n        expression : NAME DOUDOT NAME\n                | expression DOUDOT NAME\n        \n        expression : NUMBER COMMA NUMBER\n                | expression COMMA NUMBER\n        \n        expression : ALLFLD\n        \n        expression : expression COLON expression\n        \n        expression : QUOTE NAME QUOTE\n        \n        expression : NUMBER\n        \n        empty : \n        '
     
-_lr_action_items = {'NAME':([0,9,10,11,12,14,15,16,17,18,19,20,41,42,43,44,45,46,],[4,22,4,24,25,4,4,29,30,4,32,4,4,4,4,4,4,4,]),'AT':([0,10,14,15,18,20,41,42,43,44,45,46,],[5,5,5,5,5,5,5,5,5,5,5,5,]),'QMARK':([0,10,14,15,18,20,41,42,43,44,45,46,],[6,6,6,6,6,6,6,6,6,6,6,6,]),'NUMBER':([0,10,13,14,15,18,20,21,41,42,43,44,45,46,],[7,7,26,7,7,7,7,35,7,7,7,7,7,7,]),'ALLFLD':([0,10,14,15,18,20,41,42,43,44,45,46,],[8,8,8,8,8,8,8,8,8,8,8,8,]),'QUOTE':([0,10,14,15,18,20,22,41,42,43,44,45,46,],[9,9,9,9,9,9,36,9,9,9,9,9,9,]),'$end':([0,1,2,3,7,8,24,25,26,27,29,30,32,35,36,37,38,39,40,],[-24,0,-1,-2,-23,-20,-6,-17,-19,-21,-4,-16,-8,-18,-22,-5,-3,-7,-9,]),'LBRACKET':([2,4,5,7,8,23,24,25,26,27,28,29,30,31,32,34,35,36,37,38,39,40,47,48,49,50,51,52,],[10,15,18,-23,-20,10,-6,-17,-19,10,10,-4,-16,10,-8,10,-18,-22,-5,-3,-7,-9,10,10,10,10,10,10,]),'SIGDOT':([2,4,5,7,8,23,24,25,26,27,28,29,30,31,32,34,35,36,37,38,39,40,47,48,49,50,51,52,],[11,16,19,-23,-20,11,-6,-17,-19,11,11,-4,-16,11,-8,11,-18,-22,-5,-3,-7,-9,11,11,11,11,11,11,]),'DOUDOT':([2,4,7,8,23,24,25,26,27,28,29,30,31,32,34,35,36,37,38,39,40,47,48,49,50,51,52,],[12,17,-23,-20,12,-6,-17,-19,12,12,-4,-16,12,-8,12,-18,-22,-5,-3,-7,-9,12,12,12,12,12,12,]),'COMMA':([2,7,8,23,24,25,26,27,28,29,30,31,32,34,35,36,37,38,39,40,47,48,49,50,51,52,],[13,21,-20,13,-6,-17,-19,13,13,-4,-16,13,-8,13,-18,-22,-5,-3,-7,-9,13,13,13,13,13,13,]),'COLON':([2,7,8,23,24,25,26,27,28,29,30,31,32,34,35,36,37,38,39,40,47,48,49,50,51,52,],[14,-23,-20,14,-6,-17,-19,14,14,-4,-16,14,-8,14,-18,-22,-5,-3,-7,-9,14,14,14,14,14,14,]),'LPARE':([6,],[20,]),'RBRACKET':([7,8,23,24,25,26,27,28,29,30,31,32,35,36,37,38,39,40,],[-23,-20,37,-6,-17,-19,-21,38,-4,-16,39,-8,-18,-22,-5,-3,-7,-9,]),'EQUAL':([7,8,24,25,26,27,29,30,32,34,35,36,37,38,39,40,],[-23,-20,-6,-17,-19,-21,-4,-16,-8,41,-18,-22,-5,-3,-7,-9,]),'NOTEQ':([7,8,24,25,26,27,29,30,32,34,35,36,37,38,39,40,],[-23,-20,-6,-17,-19,-21,-4,-16,-8,42,-18,-22,-5,-3,-7,-9,]),'LESST':([7,8,24,25,26,27,29,30,32,34,35,36,37,38,39,40,],[-23,-20,-6,-17,-19,-21,-4,-16,-8,43,-18,-22,-5,-3,-7,-9,]),'NOTGT':([7,8,24,25,26,27,29,30,32,34,35,36,37,38,39,40,],[-23,-20,-6,-17,-19,-21,-4,-16,-8,44,-18,-22,-5,-3,-7,-9,]),'GREAT':([7,8,24,25,26,27,29,30,32,34,35,36,37,38,39,40,],[-23,-20,-6,-17,-19,-21,-4,-16,-8,45,-18,-22,-5,-3,-7,-9,]),'NOTLT':([7,8,24,25,26,27,29,30,32,34,35,36,37,38,39,40,],[-23,-20,-6,-17,-19,-21,-4,-16,-8,46,-18,-22,-5,-3,-7,-9,]),'RPARE':([7,8,24,25,26,27,29,30,32,33,35,36,37,38,39,40,47,48,49,50,51,52,],[-23,-20,-6,-17,-19,-21,-4,-16,-8,40,-18,-22,-5,-3,-7,-9,-10,-11,-12,-13,-14,-15,]),}
+_lr_action_items = {'ROOT':([0,5,12,16,17,22,24,44,48,49,50,51,52,53,],[3,20,20,20,20,20,20,20,20,20,20,20,20,20,]),'AT':([0,5,12,16,17,22,24,44,48,49,50,51,52,53,],[7,7,7,7,7,7,7,7,7,7,7,7,7,7,]),'LBRACKET':([0,2,3,5,7,9,10,12,16,17,19,20,22,24,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,],[5,12,17,5,22,-26,-23,5,5,5,12,17,5,5,12,-7,-20,-22,12,12,-5,44,-19,12,-9,12,-21,-25,-6,-4,5,-8,-12,5,5,5,5,5,5,12,-11,12,12,12,12,12,12,-10,]),'QMARK':([0,5,12,16,17,22,24,44,48,49,50,51,52,53,],[8,8,8,8,8,8,8,8,8,8,8,8,8,8,]),'NAME':([0,5,11,12,13,14,16,17,18,21,22,23,24,44,45,48,49,50,51,52,53,],[6,6,26,6,28,29,6,6,33,35,6,37,6,6,55,6,6,6,6,6,6,]),'NUMBER':([0,5,12,15,16,17,22,24,25,44,48,49,50,51,52,53,],[9,9,9,30,9,9,9,9,40,9,9,9,9,9,9,9,]),'ALLFLD':([0,5,12,16,17,22,24,44,48,49,50,51,52,53,],[10,10,10,10,10,10,10,10,10,10,10,10,10,10,]),'QUOTE':([0,5,12,16,17,22,24,26,44,48,49,50,51,52,53,],[11,11,11,11,11,11,11,41,11,11,11,11,11,11,11,]),'$end':([0,1,2,3,4,9,10,28,29,30,31,33,35,37,40,41,42,43,46,47,55,62,],[-27,0,-1,-2,-3,-26,-23,-7,-20,-22,-24,-5,-19,-9,-21,-25,-6,-4,-8,-12,-11,-10,]),'SIGDOT':([2,3,7,9,10,19,20,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,46,47,54,55,56,57,58,59,60,61,62,],[13,18,23,-26,-23,13,18,13,-7,-20,-22,13,13,-5,45,-19,13,-9,13,-21,-25,-6,-4,-8,-12,13,-11,13,13,13,13,13,13,-10,]),'DOUDOT':([2,6,9,10,19,27,28,29,30,31,32,33,35,36,37,39,40,41,42,43,46,47,54,55,56,57,58,59,60,61,62,],[14,21,-26,-23,14,14,-7,-20,-22,14,14,-5,-19,14,-9,14,-21,-25,-6,-4,-8,-12,14,-11,14,14,14,14,14,14,-10,]),'COMMA':([2,9,10,19,27,28,29,30,31,32,33,35,36,37,39,40,41,42,43,46,47,54,55,56,57,58,59,60,61,62,],[15,25,-23,15,15,-7,-20,-22,15,15,-5,-19,15,-9,15,-21,-25,-6,-4,-8,-12,15,-11,15,15,15,15,15,15,-10,]),'COLON':([2,9,10,19,27,28,29,30,31,32,33,35,36,37,39,40,41,42,43,46,47,54,55,56,57,58,59,60,61,62,],[16,-26,-23,16,16,-7,-20,-22,16,16,-5,-19,16,-9,16,-21,-25,-6,-4,-8,-12,16,-11,16,16,16,16,16,16,-10,]),'LPARE':([8,],[24,]),'RBRACKET':([9,10,19,27,28,29,30,31,32,33,35,36,37,40,41,42,43,46,47,54,55,62,],[-26,-23,34,42,-7,-20,-22,-24,43,-5,-19,46,-9,-21,-25,-6,-4,-8,-12,62,-11,-10,]),'EQUAL':([9,10,28,29,30,31,33,35,37,39,40,41,42,43,46,47,55,62,],[-26,-23,-7,-20,-22,-24,-5,-19,-9,48,-21,-25,-6,-4,-8,-12,-11,-10,]),'NOTEQ':([9,10,28,29,30,31,33,35,37,39,40,41,42,43,46,47,55,62,],[-26,-23,-7,-20,-22,-24,-5,-19,-9,49,-21,-25,-6,-4,-8,-12,-11,-10,]),'LESST':([9,10,28,29,30,31,33,35,37,39,40,41,42,43,46,47,55,62,],[-26,-23,-7,-20,-22,-24,-5,-19,-9,50,-21,-25,-6,-4,-8,-12,-11,-10,]),'NOTGT':([9,10,28,29,30,31,33,35,37,39,40,41,42,43,46,47,55,62,],[-26,-23,-7,-20,-22,-24,-5,-19,-9,51,-21,-25,-6,-4,-8,-12,-11,-10,]),'GREAT':([9,10,28,29,30,31,33,35,37,39,40,41,42,43,46,47,55,62,],[-26,-23,-7,-20,-22,-24,-5,-19,-9,52,-21,-25,-6,-4,-8,-12,-11,-10,]),'NOTLT':([9,10,28,29,30,31,33,35,37,39,40,41,42,43,46,47,55,62,],[-26,-23,-7,-20,-22,-24,-5,-19,-9,53,-21,-25,-6,-4,-8,-12,-11,-10,]),'RPARE':([9,10,28,29,30,31,33,35,37,38,40,41,42,43,46,47,55,56,57,58,59,60,61,62,],[-26,-23,-7,-20,-22,-24,-5,-19,-9,47,-21,-25,-6,-4,-8,-12,-11,-13,-14,-15,-16,-17,-18,-10,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'jsonx':([0,],[1,]),'expression':([0,10,14,15,18,20,41,42,43,44,45,46,],[2,23,27,28,31,34,47,48,49,50,51,52,]),'empty':([0,],[3,]),'condition':([20,],[33,]),}
+_lr_goto_items = {'jsonx':([0,],[1,]),'expression':([0,5,12,16,17,22,24,44,48,49,50,51,52,53,],[2,19,27,31,32,36,39,54,56,57,58,59,60,61,]),'empty':([0,],[4,]),'condition':([24,],[38,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,28 +27,31 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> jsonx","S'",1,None,None,None),
-  ('jsonx -> expression','jsonx',1,'p_jsonx','parser.py',13),
+  ('jsonx -> expression','jsonx',1,'p_jsonx','parser.py',12),
+  ('jsonx -> ROOT','jsonx',1,'p_jsonx','parser.py',13),
   ('jsonx -> empty','jsonx',1,'p_jsonx','parser.py',14),
-  ('expression -> NAME LBRACKET expression RBRACKET','expression',4,'p_expression','parser.py',20),
-  ('expression -> NAME SIGDOT NAME','expression',3,'p_expression','parser.py',21),
+  ('expression -> ROOT LBRACKET expression RBRACKET','expression',4,'p_expression','parser.py',20),
+  ('expression -> ROOT SIGDOT NAME','expression',3,'p_expression','parser.py',21),
   ('expression -> expression LBRACKET expression RBRACKET','expression',4,'p_expression','parser.py',22),
   ('expression -> expression SIGDOT NAME','expression',3,'p_expression','parser.py',23),
   ('expression -> AT LBRACKET expression RBRACKET','expression',4,'p_expression','parser.py',24),
   ('expression -> AT SIGDOT NAME','expression',3,'p_expression','parser.py',25),
-  ('expression -> QMARK LPARE condition RPARE','expression',4,'p_expression_filter','parser.py',31),
-  ('condition -> expression EQUAL expression','condition',3,'p_condition_equal','parser.py',38),
-  ('condition -> expression NOTEQ expression','condition',3,'p_condition_notequal','parser.py',44),
-  ('condition -> expression LESST expression','condition',3,'p_condition_less','parser.py',50),
-  ('condition -> expression NOTGT expression','condition',3,'p_condition_notgreater','parser.py',56),
-  ('condition -> expression GREAT expression','condition',3,'p_condition_greater','parser.py',62),
-  ('condition -> expression NOTLT expression','condition',3,'p_condition_notless','parser.py',68),
-  ('expression -> NAME DOUDOT NAME','expression',3,'p_expression_dsearch','parser.py',76),
-  ('expression -> expression DOUDOT NAME','expression',3,'p_expression_dsearch','parser.py',77),
-  ('expression -> NUMBER COMMA NUMBER','expression',3,'p_expression_list','parser.py',83),
-  ('expression -> expression COMMA NUMBER','expression',3,'p_expression_list','parser.py',84),
-  ('expression -> ALLFLD','expression',1,'p_expression_all','parser.py',94),
-  ('expression -> expression COLON expression','expression',3,'p_expression_slice','parser.py',100),
-  ('expression -> QUOTE NAME QUOTE','expression',3,'p_expression_name','parser.py',106),
-  ('expression -> NUMBER','expression',1,'p_expression_number','parser.py',112),
-  ('empty -> <empty>','empty',0,'p_empty','parser.py',118),
+  ('expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET','expression',6,'p_expression_brack_before','parser.py',31),
+  ('expression -> LBRACKET expression RBRACKET SIGDOT NAME','expression',5,'p_expression_brack_before','parser.py',32),
+  ('expression -> QMARK LPARE condition RPARE','expression',4,'p_expression_filter','parser.py',38),
+  ('condition -> expression EQUAL expression','condition',3,'p_condition_equal','parser.py',45),
+  ('condition -> expression NOTEQ expression','condition',3,'p_condition_notequal','parser.py',51),
+  ('condition -> expression LESST expression','condition',3,'p_condition_less','parser.py',57),
+  ('condition -> expression NOTGT expression','condition',3,'p_condition_notgreater','parser.py',63),
+  ('condition -> expression GREAT expression','condition',3,'p_condition_greater','parser.py',69),
+  ('condition -> expression NOTLT expression','condition',3,'p_condition_notless','parser.py',75),
+  ('expression -> NAME DOUDOT NAME','expression',3,'p_expression_dsearch','parser.py',83),
+  ('expression -> expression DOUDOT NAME','expression',3,'p_expression_dsearch','parser.py',84),
+  ('expression -> NUMBER COMMA NUMBER','expression',3,'p_expression_list','parser.py',90),
+  ('expression -> expression COMMA NUMBER','expression',3,'p_expression_list','parser.py',91),
+  ('expression -> ALLFLD','expression',1,'p_expression_all','parser.py',101),
+  ('expression -> expression COLON expression','expression',3,'p_expression_slice','parser.py',107),
+  ('expression -> QUOTE NAME QUOTE','expression',3,'p_expression_name','parser.py',113),
+  ('expression -> NUMBER','expression',1,'p_expression_number','parser.py',119),
+  ('empty -> <empty>','empty',0,'p_empty','parser.py',125),
 ]

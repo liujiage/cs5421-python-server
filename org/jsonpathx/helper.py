@@ -1,6 +1,6 @@
 import json
 import re
-import ply_paser.parser
+from ply_paser.parser import JsonPathXParser
 
 def index_helper(data, index, res):
     for dd in data:
@@ -268,7 +268,8 @@ def trans(lhs, rhs):
 
 
 def jsonx_path_lalr(source, query):
-    parser = parser.JsonPathXParser()
+    parser = JsonPathXParser()
     parser.build()
     res = parser.parser.parse(query)
+    print(res)
     return convert(source, res)

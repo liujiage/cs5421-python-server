@@ -1,8 +1,7 @@
 import ply.yacc as yacc
 # from org.jsonpathx.ply_paser.lexer import JsonPathLexer
 # from . import JsonPathLexer
-import lexer
-
+from .lexer import JsonPathXLexer
 class JsonPathXParser(object):
     '''
         An LALR-parser for JsonPathX
@@ -131,7 +130,7 @@ class JsonPathXParser(object):
         print("Syntax error in input!")
 
     def build(self, **kwargs):
-        self.lexer = lexer.JsonPathXLexer()
+        self.lexer = JsonPathXLexer()
         self.tokens = self.lexer.tokens
         self.lexer.build() 
         self.parser = yacc.yacc(module=self, **kwargs)

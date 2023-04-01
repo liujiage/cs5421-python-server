@@ -1,0 +1,1272 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> jsonx
+Rule 1     jsonx -> expression
+Rule 2     jsonx -> ROOT
+Rule 3     jsonx -> empty
+Rule 4     expression -> ROOT LBRACKET expression RBRACKET
+Rule 5     expression -> ROOT SIGDOT NAME
+Rule 6     expression -> expression LBRACKET expression RBRACKET
+Rule 7     expression -> expression SIGDOT NAME
+Rule 8     expression -> AT LBRACKET expression RBRACKET
+Rule 9     expression -> AT SIGDOT NAME
+Rule 10    expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+Rule 11    expression -> LBRACKET expression RBRACKET SIGDOT NAME
+Rule 12    expression -> QMARK LPARE condition RPARE
+Rule 13    condition -> expression EQUAL expression
+Rule 14    condition -> expression NOTEQ expression
+Rule 15    condition -> expression LESST expression
+Rule 16    condition -> expression NOTGT expression
+Rule 17    condition -> expression GREAT expression
+Rule 18    condition -> expression NOTLT expression
+Rule 19    expression -> NAME DOUDOT NAME
+Rule 20    expression -> expression DOUDOT NAME
+Rule 21    expression -> NUMBER COMMA NUMBER
+Rule 22    expression -> expression COMMA NUMBER
+Rule 23    expression -> ALLFLD
+Rule 24    expression -> expression COLON expression
+Rule 25    expression -> QUOTE NAME QUOTE
+Rule 26    expression -> NUMBER
+Rule 27    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ALLFLD               : 23
+AT                   : 8 9
+COLON                : 24
+COMMA                : 21 22
+DOUDOT               : 19 20
+EQUAL                : 13
+GREAT                : 17
+LBRACKET             : 4 6 8 10 10 11
+LESST                : 15
+LPARE                : 12
+NAME                 : 5 7 9 11 19 19 20 25
+NOTEQ                : 14
+NOTGT                : 16
+NOTLT                : 18
+NUMBER               : 21 21 22 26
+QMARK                : 12
+QUOTE                : 25 25
+RBRACKET             : 4 6 8 10 10 11
+ROOT                 : 2 4 5
+RPARE                : 12
+SIGDOT               : 5 7 9 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+condition            : 12
+empty                : 3
+expression           : 1 4 6 6 7 8 10 10 11 13 13 14 14 15 15 16 16 17 17 18 18 20 22 24 24
+jsonx                : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . jsonx
+    (1) jsonx -> . expression
+    (2) jsonx -> . ROOT
+    (3) jsonx -> . empty
+    (4) expression -> . ROOT LBRACKET expression RBRACKET
+    (5) expression -> . ROOT SIGDOT NAME
+    (6) expression -> . expression LBRACKET expression RBRACKET
+    (7) expression -> . expression SIGDOT NAME
+    (8) expression -> . AT LBRACKET expression RBRACKET
+    (9) expression -> . AT SIGDOT NAME
+    (10) expression -> . LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> . LBRACKET expression RBRACKET SIGDOT NAME
+    (12) expression -> . QMARK LPARE condition RPARE
+    (19) expression -> . NAME DOUDOT NAME
+    (20) expression -> . expression DOUDOT NAME
+    (21) expression -> . NUMBER COMMA NUMBER
+    (22) expression -> . expression COMMA NUMBER
+    (23) expression -> . ALLFLD
+    (24) expression -> . expression COLON expression
+    (25) expression -> . QUOTE NAME QUOTE
+    (26) expression -> . NUMBER
+    (27) empty -> .
+
+    ROOT            shift and go to state 3
+    AT              shift and go to state 7
+    LBRACKET        shift and go to state 5
+    QMARK           shift and go to state 8
+    NAME            shift and go to state 6
+    NUMBER          shift and go to state 9
+    ALLFLD          shift and go to state 10
+    QUOTE           shift and go to state 11
+    $end            reduce using rule 27 (empty -> .)
+
+    jsonx                          shift and go to state 1
+    expression                     shift and go to state 2
+    empty                          shift and go to state 4
+
+state 1
+
+    (0) S' -> jsonx .
+
+
+
+state 2
+
+    (1) jsonx -> expression .
+    (6) expression -> expression . LBRACKET expression RBRACKET
+    (7) expression -> expression . SIGDOT NAME
+    (20) expression -> expression . DOUDOT NAME
+    (22) expression -> expression . COMMA NUMBER
+    (24) expression -> expression . COLON expression
+
+    $end            reduce using rule 1 (jsonx -> expression .)
+    LBRACKET        shift and go to state 12
+    SIGDOT          shift and go to state 13
+    DOUDOT          shift and go to state 14
+    COMMA           shift and go to state 15
+    COLON           shift and go to state 16
+
+
+state 3
+
+    (2) jsonx -> ROOT .
+    (4) expression -> ROOT . LBRACKET expression RBRACKET
+    (5) expression -> ROOT . SIGDOT NAME
+
+    $end            reduce using rule 2 (jsonx -> ROOT .)
+    LBRACKET        shift and go to state 17
+    SIGDOT          shift and go to state 18
+
+
+state 4
+
+    (3) jsonx -> empty .
+
+    $end            reduce using rule 3 (jsonx -> empty .)
+
+
+state 5
+
+    (10) expression -> LBRACKET . expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> LBRACKET . expression RBRACKET SIGDOT NAME
+    (4) expression -> . ROOT LBRACKET expression RBRACKET
+    (5) expression -> . ROOT SIGDOT NAME
+    (6) expression -> . expression LBRACKET expression RBRACKET
+    (7) expression -> . expression SIGDOT NAME
+    (8) expression -> . AT LBRACKET expression RBRACKET
+    (9) expression -> . AT SIGDOT NAME
+    (10) expression -> . LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> . LBRACKET expression RBRACKET SIGDOT NAME
+    (12) expression -> . QMARK LPARE condition RPARE
+    (19) expression -> . NAME DOUDOT NAME
+    (20) expression -> . expression DOUDOT NAME
+    (21) expression -> . NUMBER COMMA NUMBER
+    (22) expression -> . expression COMMA NUMBER
+    (23) expression -> . ALLFLD
+    (24) expression -> . expression COLON expression
+    (25) expression -> . QUOTE NAME QUOTE
+    (26) expression -> . NUMBER
+
+    ROOT            shift and go to state 20
+    AT              shift and go to state 7
+    LBRACKET        shift and go to state 5
+    QMARK           shift and go to state 8
+    NAME            shift and go to state 6
+    NUMBER          shift and go to state 9
+    ALLFLD          shift and go to state 10
+    QUOTE           shift and go to state 11
+
+    expression                     shift and go to state 19
+
+state 6
+
+    (19) expression -> NAME . DOUDOT NAME
+
+    DOUDOT          shift and go to state 21
+
+
+state 7
+
+    (8) expression -> AT . LBRACKET expression RBRACKET
+    (9) expression -> AT . SIGDOT NAME
+
+    LBRACKET        shift and go to state 22
+    SIGDOT          shift and go to state 23
+
+
+state 8
+
+    (12) expression -> QMARK . LPARE condition RPARE
+
+    LPARE           shift and go to state 24
+
+
+state 9
+
+    (21) expression -> NUMBER . COMMA NUMBER
+    (26) expression -> NUMBER .
+
+  ! shift/reduce conflict for COMMA resolved as shift
+    COMMA           shift and go to state 25
+    LBRACKET        reduce using rule 26 (expression -> NUMBER .)
+    SIGDOT          reduce using rule 26 (expression -> NUMBER .)
+    DOUDOT          reduce using rule 26 (expression -> NUMBER .)
+    COLON           reduce using rule 26 (expression -> NUMBER .)
+    $end            reduce using rule 26 (expression -> NUMBER .)
+    RBRACKET        reduce using rule 26 (expression -> NUMBER .)
+    EQUAL           reduce using rule 26 (expression -> NUMBER .)
+    NOTEQ           reduce using rule 26 (expression -> NUMBER .)
+    LESST           reduce using rule 26 (expression -> NUMBER .)
+    NOTGT           reduce using rule 26 (expression -> NUMBER .)
+    GREAT           reduce using rule 26 (expression -> NUMBER .)
+    NOTLT           reduce using rule 26 (expression -> NUMBER .)
+    RPARE           reduce using rule 26 (expression -> NUMBER .)
+
+  ! COMMA           [ reduce using rule 26 (expression -> NUMBER .) ]
+
+
+state 10
+
+    (23) expression -> ALLFLD .
+
+    LBRACKET        reduce using rule 23 (expression -> ALLFLD .)
+    SIGDOT          reduce using rule 23 (expression -> ALLFLD .)
+    DOUDOT          reduce using rule 23 (expression -> ALLFLD .)
+    COMMA           reduce using rule 23 (expression -> ALLFLD .)
+    COLON           reduce using rule 23 (expression -> ALLFLD .)
+    $end            reduce using rule 23 (expression -> ALLFLD .)
+    RBRACKET        reduce using rule 23 (expression -> ALLFLD .)
+    EQUAL           reduce using rule 23 (expression -> ALLFLD .)
+    NOTEQ           reduce using rule 23 (expression -> ALLFLD .)
+    LESST           reduce using rule 23 (expression -> ALLFLD .)
+    NOTGT           reduce using rule 23 (expression -> ALLFLD .)
+    GREAT           reduce using rule 23 (expression -> ALLFLD .)
+    NOTLT           reduce using rule 23 (expression -> ALLFLD .)
+    RPARE           reduce using rule 23 (expression -> ALLFLD .)
+
+
+state 11
+
+    (25) expression -> QUOTE . NAME QUOTE
+
+    NAME            shift and go to state 26
+
+
+state 12
+
+    (6) expression -> expression LBRACKET . expression RBRACKET
+    (4) expression -> . ROOT LBRACKET expression RBRACKET
+    (5) expression -> . ROOT SIGDOT NAME
+    (6) expression -> . expression LBRACKET expression RBRACKET
+    (7) expression -> . expression SIGDOT NAME
+    (8) expression -> . AT LBRACKET expression RBRACKET
+    (9) expression -> . AT SIGDOT NAME
+    (10) expression -> . LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> . LBRACKET expression RBRACKET SIGDOT NAME
+    (12) expression -> . QMARK LPARE condition RPARE
+    (19) expression -> . NAME DOUDOT NAME
+    (20) expression -> . expression DOUDOT NAME
+    (21) expression -> . NUMBER COMMA NUMBER
+    (22) expression -> . expression COMMA NUMBER
+    (23) expression -> . ALLFLD
+    (24) expression -> . expression COLON expression
+    (25) expression -> . QUOTE NAME QUOTE
+    (26) expression -> . NUMBER
+
+    ROOT            shift and go to state 20
+    AT              shift and go to state 7
+    LBRACKET        shift and go to state 5
+    QMARK           shift and go to state 8
+    NAME            shift and go to state 6
+    NUMBER          shift and go to state 9
+    ALLFLD          shift and go to state 10
+    QUOTE           shift and go to state 11
+
+    expression                     shift and go to state 27
+
+state 13
+
+    (7) expression -> expression SIGDOT . NAME
+
+    NAME            shift and go to state 28
+
+
+state 14
+
+    (20) expression -> expression DOUDOT . NAME
+
+    NAME            shift and go to state 29
+
+
+state 15
+
+    (22) expression -> expression COMMA . NUMBER
+
+    NUMBER          shift and go to state 30
+
+
+state 16
+
+    (24) expression -> expression COLON . expression
+    (4) expression -> . ROOT LBRACKET expression RBRACKET
+    (5) expression -> . ROOT SIGDOT NAME
+    (6) expression -> . expression LBRACKET expression RBRACKET
+    (7) expression -> . expression SIGDOT NAME
+    (8) expression -> . AT LBRACKET expression RBRACKET
+    (9) expression -> . AT SIGDOT NAME
+    (10) expression -> . LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> . LBRACKET expression RBRACKET SIGDOT NAME
+    (12) expression -> . QMARK LPARE condition RPARE
+    (19) expression -> . NAME DOUDOT NAME
+    (20) expression -> . expression DOUDOT NAME
+    (21) expression -> . NUMBER COMMA NUMBER
+    (22) expression -> . expression COMMA NUMBER
+    (23) expression -> . ALLFLD
+    (24) expression -> . expression COLON expression
+    (25) expression -> . QUOTE NAME QUOTE
+    (26) expression -> . NUMBER
+
+    ROOT            shift and go to state 20
+    AT              shift and go to state 7
+    LBRACKET        shift and go to state 5
+    QMARK           shift and go to state 8
+    NAME            shift and go to state 6
+    NUMBER          shift and go to state 9
+    ALLFLD          shift and go to state 10
+    QUOTE           shift and go to state 11
+
+    expression                     shift and go to state 31
+
+state 17
+
+    (4) expression -> ROOT LBRACKET . expression RBRACKET
+    (4) expression -> . ROOT LBRACKET expression RBRACKET
+    (5) expression -> . ROOT SIGDOT NAME
+    (6) expression -> . expression LBRACKET expression RBRACKET
+    (7) expression -> . expression SIGDOT NAME
+    (8) expression -> . AT LBRACKET expression RBRACKET
+    (9) expression -> . AT SIGDOT NAME
+    (10) expression -> . LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> . LBRACKET expression RBRACKET SIGDOT NAME
+    (12) expression -> . QMARK LPARE condition RPARE
+    (19) expression -> . NAME DOUDOT NAME
+    (20) expression -> . expression DOUDOT NAME
+    (21) expression -> . NUMBER COMMA NUMBER
+    (22) expression -> . expression COMMA NUMBER
+    (23) expression -> . ALLFLD
+    (24) expression -> . expression COLON expression
+    (25) expression -> . QUOTE NAME QUOTE
+    (26) expression -> . NUMBER
+
+    ROOT            shift and go to state 20
+    AT              shift and go to state 7
+    LBRACKET        shift and go to state 5
+    QMARK           shift and go to state 8
+    NAME            shift and go to state 6
+    NUMBER          shift and go to state 9
+    ALLFLD          shift and go to state 10
+    QUOTE           shift and go to state 11
+
+    expression                     shift and go to state 32
+
+state 18
+
+    (5) expression -> ROOT SIGDOT . NAME
+
+    NAME            shift and go to state 33
+
+
+state 19
+
+    (10) expression -> LBRACKET expression . RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> LBRACKET expression . RBRACKET SIGDOT NAME
+    (6) expression -> expression . LBRACKET expression RBRACKET
+    (7) expression -> expression . SIGDOT NAME
+    (20) expression -> expression . DOUDOT NAME
+    (22) expression -> expression . COMMA NUMBER
+    (24) expression -> expression . COLON expression
+
+    RBRACKET        shift and go to state 34
+    LBRACKET        shift and go to state 12
+    SIGDOT          shift and go to state 13
+    DOUDOT          shift and go to state 14
+    COMMA           shift and go to state 15
+    COLON           shift and go to state 16
+
+
+state 20
+
+    (4) expression -> ROOT . LBRACKET expression RBRACKET
+    (5) expression -> ROOT . SIGDOT NAME
+
+    LBRACKET        shift and go to state 17
+    SIGDOT          shift and go to state 18
+
+
+state 21
+
+    (19) expression -> NAME DOUDOT . NAME
+
+    NAME            shift and go to state 35
+
+
+state 22
+
+    (8) expression -> AT LBRACKET . expression RBRACKET
+    (4) expression -> . ROOT LBRACKET expression RBRACKET
+    (5) expression -> . ROOT SIGDOT NAME
+    (6) expression -> . expression LBRACKET expression RBRACKET
+    (7) expression -> . expression SIGDOT NAME
+    (8) expression -> . AT LBRACKET expression RBRACKET
+    (9) expression -> . AT SIGDOT NAME
+    (10) expression -> . LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> . LBRACKET expression RBRACKET SIGDOT NAME
+    (12) expression -> . QMARK LPARE condition RPARE
+    (19) expression -> . NAME DOUDOT NAME
+    (20) expression -> . expression DOUDOT NAME
+    (21) expression -> . NUMBER COMMA NUMBER
+    (22) expression -> . expression COMMA NUMBER
+    (23) expression -> . ALLFLD
+    (24) expression -> . expression COLON expression
+    (25) expression -> . QUOTE NAME QUOTE
+    (26) expression -> . NUMBER
+
+    ROOT            shift and go to state 20
+    AT              shift and go to state 7
+    LBRACKET        shift and go to state 5
+    QMARK           shift and go to state 8
+    NAME            shift and go to state 6
+    NUMBER          shift and go to state 9
+    ALLFLD          shift and go to state 10
+    QUOTE           shift and go to state 11
+
+    expression                     shift and go to state 36
+
+state 23
+
+    (9) expression -> AT SIGDOT . NAME
+
+    NAME            shift and go to state 37
+
+
+state 24
+
+    (12) expression -> QMARK LPARE . condition RPARE
+    (13) condition -> . expression EQUAL expression
+    (14) condition -> . expression NOTEQ expression
+    (15) condition -> . expression LESST expression
+    (16) condition -> . expression NOTGT expression
+    (17) condition -> . expression GREAT expression
+    (18) condition -> . expression NOTLT expression
+    (4) expression -> . ROOT LBRACKET expression RBRACKET
+    (5) expression -> . ROOT SIGDOT NAME
+    (6) expression -> . expression LBRACKET expression RBRACKET
+    (7) expression -> . expression SIGDOT NAME
+    (8) expression -> . AT LBRACKET expression RBRACKET
+    (9) expression -> . AT SIGDOT NAME
+    (10) expression -> . LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> . LBRACKET expression RBRACKET SIGDOT NAME
+    (12) expression -> . QMARK LPARE condition RPARE
+    (19) expression -> . NAME DOUDOT NAME
+    (20) expression -> . expression DOUDOT NAME
+    (21) expression -> . NUMBER COMMA NUMBER
+    (22) expression -> . expression COMMA NUMBER
+    (23) expression -> . ALLFLD
+    (24) expression -> . expression COLON expression
+    (25) expression -> . QUOTE NAME QUOTE
+    (26) expression -> . NUMBER
+
+    ROOT            shift and go to state 20
+    AT              shift and go to state 7
+    LBRACKET        shift and go to state 5
+    QMARK           shift and go to state 8
+    NAME            shift and go to state 6
+    NUMBER          shift and go to state 9
+    ALLFLD          shift and go to state 10
+    QUOTE           shift and go to state 11
+
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+
+state 25
+
+    (21) expression -> NUMBER COMMA . NUMBER
+
+    NUMBER          shift and go to state 40
+
+
+state 26
+
+    (25) expression -> QUOTE NAME . QUOTE
+
+    QUOTE           shift and go to state 41
+
+
+state 27
+
+    (6) expression -> expression LBRACKET expression . RBRACKET
+    (6) expression -> expression . LBRACKET expression RBRACKET
+    (7) expression -> expression . SIGDOT NAME
+    (20) expression -> expression . DOUDOT NAME
+    (22) expression -> expression . COMMA NUMBER
+    (24) expression -> expression . COLON expression
+
+    RBRACKET        shift and go to state 42
+    LBRACKET        shift and go to state 12
+    SIGDOT          shift and go to state 13
+    DOUDOT          shift and go to state 14
+    COMMA           shift and go to state 15
+    COLON           shift and go to state 16
+
+
+state 28
+
+    (7) expression -> expression SIGDOT NAME .
+
+    LBRACKET        reduce using rule 7 (expression -> expression SIGDOT NAME .)
+    SIGDOT          reduce using rule 7 (expression -> expression SIGDOT NAME .)
+    DOUDOT          reduce using rule 7 (expression -> expression SIGDOT NAME .)
+    COMMA           reduce using rule 7 (expression -> expression SIGDOT NAME .)
+    COLON           reduce using rule 7 (expression -> expression SIGDOT NAME .)
+    $end            reduce using rule 7 (expression -> expression SIGDOT NAME .)
+    RBRACKET        reduce using rule 7 (expression -> expression SIGDOT NAME .)
+    EQUAL           reduce using rule 7 (expression -> expression SIGDOT NAME .)
+    NOTEQ           reduce using rule 7 (expression -> expression SIGDOT NAME .)
+    LESST           reduce using rule 7 (expression -> expression SIGDOT NAME .)
+    NOTGT           reduce using rule 7 (expression -> expression SIGDOT NAME .)
+    GREAT           reduce using rule 7 (expression -> expression SIGDOT NAME .)
+    NOTLT           reduce using rule 7 (expression -> expression SIGDOT NAME .)
+    RPARE           reduce using rule 7 (expression -> expression SIGDOT NAME .)
+
+
+state 29
+
+    (20) expression -> expression DOUDOT NAME .
+
+    LBRACKET        reduce using rule 20 (expression -> expression DOUDOT NAME .)
+    SIGDOT          reduce using rule 20 (expression -> expression DOUDOT NAME .)
+    DOUDOT          reduce using rule 20 (expression -> expression DOUDOT NAME .)
+    COMMA           reduce using rule 20 (expression -> expression DOUDOT NAME .)
+    COLON           reduce using rule 20 (expression -> expression DOUDOT NAME .)
+    $end            reduce using rule 20 (expression -> expression DOUDOT NAME .)
+    RBRACKET        reduce using rule 20 (expression -> expression DOUDOT NAME .)
+    EQUAL           reduce using rule 20 (expression -> expression DOUDOT NAME .)
+    NOTEQ           reduce using rule 20 (expression -> expression DOUDOT NAME .)
+    LESST           reduce using rule 20 (expression -> expression DOUDOT NAME .)
+    NOTGT           reduce using rule 20 (expression -> expression DOUDOT NAME .)
+    GREAT           reduce using rule 20 (expression -> expression DOUDOT NAME .)
+    NOTLT           reduce using rule 20 (expression -> expression DOUDOT NAME .)
+    RPARE           reduce using rule 20 (expression -> expression DOUDOT NAME .)
+
+
+state 30
+
+    (22) expression -> expression COMMA NUMBER .
+
+    LBRACKET        reduce using rule 22 (expression -> expression COMMA NUMBER .)
+    SIGDOT          reduce using rule 22 (expression -> expression COMMA NUMBER .)
+    DOUDOT          reduce using rule 22 (expression -> expression COMMA NUMBER .)
+    COMMA           reduce using rule 22 (expression -> expression COMMA NUMBER .)
+    COLON           reduce using rule 22 (expression -> expression COMMA NUMBER .)
+    $end            reduce using rule 22 (expression -> expression COMMA NUMBER .)
+    RBRACKET        reduce using rule 22 (expression -> expression COMMA NUMBER .)
+    EQUAL           reduce using rule 22 (expression -> expression COMMA NUMBER .)
+    NOTEQ           reduce using rule 22 (expression -> expression COMMA NUMBER .)
+    LESST           reduce using rule 22 (expression -> expression COMMA NUMBER .)
+    NOTGT           reduce using rule 22 (expression -> expression COMMA NUMBER .)
+    GREAT           reduce using rule 22 (expression -> expression COMMA NUMBER .)
+    NOTLT           reduce using rule 22 (expression -> expression COMMA NUMBER .)
+    RPARE           reduce using rule 22 (expression -> expression COMMA NUMBER .)
+
+
+state 31
+
+    (24) expression -> expression COLON expression .
+    (6) expression -> expression . LBRACKET expression RBRACKET
+    (7) expression -> expression . SIGDOT NAME
+    (20) expression -> expression . DOUDOT NAME
+    (22) expression -> expression . COMMA NUMBER
+    (24) expression -> expression . COLON expression
+
+  ! shift/reduce conflict for LBRACKET resolved as shift
+  ! shift/reduce conflict for SIGDOT resolved as shift
+  ! shift/reduce conflict for DOUDOT resolved as shift
+  ! shift/reduce conflict for COMMA resolved as shift
+  ! shift/reduce conflict for COLON resolved as shift
+    $end            reduce using rule 24 (expression -> expression COLON expression .)
+    RBRACKET        reduce using rule 24 (expression -> expression COLON expression .)
+    EQUAL           reduce using rule 24 (expression -> expression COLON expression .)
+    NOTEQ           reduce using rule 24 (expression -> expression COLON expression .)
+    LESST           reduce using rule 24 (expression -> expression COLON expression .)
+    NOTGT           reduce using rule 24 (expression -> expression COLON expression .)
+    GREAT           reduce using rule 24 (expression -> expression COLON expression .)
+    NOTLT           reduce using rule 24 (expression -> expression COLON expression .)
+    RPARE           reduce using rule 24 (expression -> expression COLON expression .)
+    LBRACKET        shift and go to state 12
+    SIGDOT          shift and go to state 13
+    DOUDOT          shift and go to state 14
+    COMMA           shift and go to state 15
+    COLON           shift and go to state 16
+
+  ! LBRACKET        [ reduce using rule 24 (expression -> expression COLON expression .) ]
+  ! SIGDOT          [ reduce using rule 24 (expression -> expression COLON expression .) ]
+  ! DOUDOT          [ reduce using rule 24 (expression -> expression COLON expression .) ]
+  ! COMMA           [ reduce using rule 24 (expression -> expression COLON expression .) ]
+  ! COLON           [ reduce using rule 24 (expression -> expression COLON expression .) ]
+
+
+state 32
+
+    (4) expression -> ROOT LBRACKET expression . RBRACKET
+    (6) expression -> expression . LBRACKET expression RBRACKET
+    (7) expression -> expression . SIGDOT NAME
+    (20) expression -> expression . DOUDOT NAME
+    (22) expression -> expression . COMMA NUMBER
+    (24) expression -> expression . COLON expression
+
+    RBRACKET        shift and go to state 43
+    LBRACKET        shift and go to state 12
+    SIGDOT          shift and go to state 13
+    DOUDOT          shift and go to state 14
+    COMMA           shift and go to state 15
+    COLON           shift and go to state 16
+
+
+state 33
+
+    (5) expression -> ROOT SIGDOT NAME .
+
+    LBRACKET        reduce using rule 5 (expression -> ROOT SIGDOT NAME .)
+    SIGDOT          reduce using rule 5 (expression -> ROOT SIGDOT NAME .)
+    DOUDOT          reduce using rule 5 (expression -> ROOT SIGDOT NAME .)
+    COMMA           reduce using rule 5 (expression -> ROOT SIGDOT NAME .)
+    COLON           reduce using rule 5 (expression -> ROOT SIGDOT NAME .)
+    $end            reduce using rule 5 (expression -> ROOT SIGDOT NAME .)
+    RBRACKET        reduce using rule 5 (expression -> ROOT SIGDOT NAME .)
+    EQUAL           reduce using rule 5 (expression -> ROOT SIGDOT NAME .)
+    NOTEQ           reduce using rule 5 (expression -> ROOT SIGDOT NAME .)
+    LESST           reduce using rule 5 (expression -> ROOT SIGDOT NAME .)
+    NOTGT           reduce using rule 5 (expression -> ROOT SIGDOT NAME .)
+    GREAT           reduce using rule 5 (expression -> ROOT SIGDOT NAME .)
+    NOTLT           reduce using rule 5 (expression -> ROOT SIGDOT NAME .)
+    RPARE           reduce using rule 5 (expression -> ROOT SIGDOT NAME .)
+
+
+state 34
+
+    (10) expression -> LBRACKET expression RBRACKET . LBRACKET expression RBRACKET
+    (11) expression -> LBRACKET expression RBRACKET . SIGDOT NAME
+
+    LBRACKET        shift and go to state 44
+    SIGDOT          shift and go to state 45
+
+
+state 35
+
+    (19) expression -> NAME DOUDOT NAME .
+
+    LBRACKET        reduce using rule 19 (expression -> NAME DOUDOT NAME .)
+    SIGDOT          reduce using rule 19 (expression -> NAME DOUDOT NAME .)
+    DOUDOT          reduce using rule 19 (expression -> NAME DOUDOT NAME .)
+    COMMA           reduce using rule 19 (expression -> NAME DOUDOT NAME .)
+    COLON           reduce using rule 19 (expression -> NAME DOUDOT NAME .)
+    $end            reduce using rule 19 (expression -> NAME DOUDOT NAME .)
+    RBRACKET        reduce using rule 19 (expression -> NAME DOUDOT NAME .)
+    EQUAL           reduce using rule 19 (expression -> NAME DOUDOT NAME .)
+    NOTEQ           reduce using rule 19 (expression -> NAME DOUDOT NAME .)
+    LESST           reduce using rule 19 (expression -> NAME DOUDOT NAME .)
+    NOTGT           reduce using rule 19 (expression -> NAME DOUDOT NAME .)
+    GREAT           reduce using rule 19 (expression -> NAME DOUDOT NAME .)
+    NOTLT           reduce using rule 19 (expression -> NAME DOUDOT NAME .)
+    RPARE           reduce using rule 19 (expression -> NAME DOUDOT NAME .)
+
+
+state 36
+
+    (8) expression -> AT LBRACKET expression . RBRACKET
+    (6) expression -> expression . LBRACKET expression RBRACKET
+    (7) expression -> expression . SIGDOT NAME
+    (20) expression -> expression . DOUDOT NAME
+    (22) expression -> expression . COMMA NUMBER
+    (24) expression -> expression . COLON expression
+
+    RBRACKET        shift and go to state 46
+    LBRACKET        shift and go to state 12
+    SIGDOT          shift and go to state 13
+    DOUDOT          shift and go to state 14
+    COMMA           shift and go to state 15
+    COLON           shift and go to state 16
+
+
+state 37
+
+    (9) expression -> AT SIGDOT NAME .
+
+    LBRACKET        reduce using rule 9 (expression -> AT SIGDOT NAME .)
+    SIGDOT          reduce using rule 9 (expression -> AT SIGDOT NAME .)
+    DOUDOT          reduce using rule 9 (expression -> AT SIGDOT NAME .)
+    COMMA           reduce using rule 9 (expression -> AT SIGDOT NAME .)
+    COLON           reduce using rule 9 (expression -> AT SIGDOT NAME .)
+    $end            reduce using rule 9 (expression -> AT SIGDOT NAME .)
+    RBRACKET        reduce using rule 9 (expression -> AT SIGDOT NAME .)
+    EQUAL           reduce using rule 9 (expression -> AT SIGDOT NAME .)
+    NOTEQ           reduce using rule 9 (expression -> AT SIGDOT NAME .)
+    LESST           reduce using rule 9 (expression -> AT SIGDOT NAME .)
+    NOTGT           reduce using rule 9 (expression -> AT SIGDOT NAME .)
+    GREAT           reduce using rule 9 (expression -> AT SIGDOT NAME .)
+    NOTLT           reduce using rule 9 (expression -> AT SIGDOT NAME .)
+    RPARE           reduce using rule 9 (expression -> AT SIGDOT NAME .)
+
+
+state 38
+
+    (12) expression -> QMARK LPARE condition . RPARE
+
+    RPARE           shift and go to state 47
+
+
+state 39
+
+    (13) condition -> expression . EQUAL expression
+    (14) condition -> expression . NOTEQ expression
+    (15) condition -> expression . LESST expression
+    (16) condition -> expression . NOTGT expression
+    (17) condition -> expression . GREAT expression
+    (18) condition -> expression . NOTLT expression
+    (6) expression -> expression . LBRACKET expression RBRACKET
+    (7) expression -> expression . SIGDOT NAME
+    (20) expression -> expression . DOUDOT NAME
+    (22) expression -> expression . COMMA NUMBER
+    (24) expression -> expression . COLON expression
+
+    EQUAL           shift and go to state 48
+    NOTEQ           shift and go to state 49
+    LESST           shift and go to state 50
+    NOTGT           shift and go to state 51
+    GREAT           shift and go to state 52
+    NOTLT           shift and go to state 53
+    LBRACKET        shift and go to state 12
+    SIGDOT          shift and go to state 13
+    DOUDOT          shift and go to state 14
+    COMMA           shift and go to state 15
+    COLON           shift and go to state 16
+
+
+state 40
+
+    (21) expression -> NUMBER COMMA NUMBER .
+
+    LBRACKET        reduce using rule 21 (expression -> NUMBER COMMA NUMBER .)
+    SIGDOT          reduce using rule 21 (expression -> NUMBER COMMA NUMBER .)
+    DOUDOT          reduce using rule 21 (expression -> NUMBER COMMA NUMBER .)
+    COMMA           reduce using rule 21 (expression -> NUMBER COMMA NUMBER .)
+    COLON           reduce using rule 21 (expression -> NUMBER COMMA NUMBER .)
+    $end            reduce using rule 21 (expression -> NUMBER COMMA NUMBER .)
+    RBRACKET        reduce using rule 21 (expression -> NUMBER COMMA NUMBER .)
+    EQUAL           reduce using rule 21 (expression -> NUMBER COMMA NUMBER .)
+    NOTEQ           reduce using rule 21 (expression -> NUMBER COMMA NUMBER .)
+    LESST           reduce using rule 21 (expression -> NUMBER COMMA NUMBER .)
+    NOTGT           reduce using rule 21 (expression -> NUMBER COMMA NUMBER .)
+    GREAT           reduce using rule 21 (expression -> NUMBER COMMA NUMBER .)
+    NOTLT           reduce using rule 21 (expression -> NUMBER COMMA NUMBER .)
+    RPARE           reduce using rule 21 (expression -> NUMBER COMMA NUMBER .)
+
+
+state 41
+
+    (25) expression -> QUOTE NAME QUOTE .
+
+    LBRACKET        reduce using rule 25 (expression -> QUOTE NAME QUOTE .)
+    SIGDOT          reduce using rule 25 (expression -> QUOTE NAME QUOTE .)
+    DOUDOT          reduce using rule 25 (expression -> QUOTE NAME QUOTE .)
+    COMMA           reduce using rule 25 (expression -> QUOTE NAME QUOTE .)
+    COLON           reduce using rule 25 (expression -> QUOTE NAME QUOTE .)
+    $end            reduce using rule 25 (expression -> QUOTE NAME QUOTE .)
+    RBRACKET        reduce using rule 25 (expression -> QUOTE NAME QUOTE .)
+    EQUAL           reduce using rule 25 (expression -> QUOTE NAME QUOTE .)
+    NOTEQ           reduce using rule 25 (expression -> QUOTE NAME QUOTE .)
+    LESST           reduce using rule 25 (expression -> QUOTE NAME QUOTE .)
+    NOTGT           reduce using rule 25 (expression -> QUOTE NAME QUOTE .)
+    GREAT           reduce using rule 25 (expression -> QUOTE NAME QUOTE .)
+    NOTLT           reduce using rule 25 (expression -> QUOTE NAME QUOTE .)
+    RPARE           reduce using rule 25 (expression -> QUOTE NAME QUOTE .)
+
+
+state 42
+
+    (6) expression -> expression LBRACKET expression RBRACKET .
+
+    LBRACKET        reduce using rule 6 (expression -> expression LBRACKET expression RBRACKET .)
+    SIGDOT          reduce using rule 6 (expression -> expression LBRACKET expression RBRACKET .)
+    DOUDOT          reduce using rule 6 (expression -> expression LBRACKET expression RBRACKET .)
+    COMMA           reduce using rule 6 (expression -> expression LBRACKET expression RBRACKET .)
+    COLON           reduce using rule 6 (expression -> expression LBRACKET expression RBRACKET .)
+    $end            reduce using rule 6 (expression -> expression LBRACKET expression RBRACKET .)
+    RBRACKET        reduce using rule 6 (expression -> expression LBRACKET expression RBRACKET .)
+    EQUAL           reduce using rule 6 (expression -> expression LBRACKET expression RBRACKET .)
+    NOTEQ           reduce using rule 6 (expression -> expression LBRACKET expression RBRACKET .)
+    LESST           reduce using rule 6 (expression -> expression LBRACKET expression RBRACKET .)
+    NOTGT           reduce using rule 6 (expression -> expression LBRACKET expression RBRACKET .)
+    GREAT           reduce using rule 6 (expression -> expression LBRACKET expression RBRACKET .)
+    NOTLT           reduce using rule 6 (expression -> expression LBRACKET expression RBRACKET .)
+    RPARE           reduce using rule 6 (expression -> expression LBRACKET expression RBRACKET .)
+
+
+state 43
+
+    (4) expression -> ROOT LBRACKET expression RBRACKET .
+
+    LBRACKET        reduce using rule 4 (expression -> ROOT LBRACKET expression RBRACKET .)
+    SIGDOT          reduce using rule 4 (expression -> ROOT LBRACKET expression RBRACKET .)
+    DOUDOT          reduce using rule 4 (expression -> ROOT LBRACKET expression RBRACKET .)
+    COMMA           reduce using rule 4 (expression -> ROOT LBRACKET expression RBRACKET .)
+    COLON           reduce using rule 4 (expression -> ROOT LBRACKET expression RBRACKET .)
+    $end            reduce using rule 4 (expression -> ROOT LBRACKET expression RBRACKET .)
+    RBRACKET        reduce using rule 4 (expression -> ROOT LBRACKET expression RBRACKET .)
+    EQUAL           reduce using rule 4 (expression -> ROOT LBRACKET expression RBRACKET .)
+    NOTEQ           reduce using rule 4 (expression -> ROOT LBRACKET expression RBRACKET .)
+    LESST           reduce using rule 4 (expression -> ROOT LBRACKET expression RBRACKET .)
+    NOTGT           reduce using rule 4 (expression -> ROOT LBRACKET expression RBRACKET .)
+    GREAT           reduce using rule 4 (expression -> ROOT LBRACKET expression RBRACKET .)
+    NOTLT           reduce using rule 4 (expression -> ROOT LBRACKET expression RBRACKET .)
+    RPARE           reduce using rule 4 (expression -> ROOT LBRACKET expression RBRACKET .)
+
+
+state 44
+
+    (10) expression -> LBRACKET expression RBRACKET LBRACKET . expression RBRACKET
+    (4) expression -> . ROOT LBRACKET expression RBRACKET
+    (5) expression -> . ROOT SIGDOT NAME
+    (6) expression -> . expression LBRACKET expression RBRACKET
+    (7) expression -> . expression SIGDOT NAME
+    (8) expression -> . AT LBRACKET expression RBRACKET
+    (9) expression -> . AT SIGDOT NAME
+    (10) expression -> . LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> . LBRACKET expression RBRACKET SIGDOT NAME
+    (12) expression -> . QMARK LPARE condition RPARE
+    (19) expression -> . NAME DOUDOT NAME
+    (20) expression -> . expression DOUDOT NAME
+    (21) expression -> . NUMBER COMMA NUMBER
+    (22) expression -> . expression COMMA NUMBER
+    (23) expression -> . ALLFLD
+    (24) expression -> . expression COLON expression
+    (25) expression -> . QUOTE NAME QUOTE
+    (26) expression -> . NUMBER
+
+    ROOT            shift and go to state 20
+    AT              shift and go to state 7
+    LBRACKET        shift and go to state 5
+    QMARK           shift and go to state 8
+    NAME            shift and go to state 6
+    NUMBER          shift and go to state 9
+    ALLFLD          shift and go to state 10
+    QUOTE           shift and go to state 11
+
+    expression                     shift and go to state 54
+
+state 45
+
+    (11) expression -> LBRACKET expression RBRACKET SIGDOT . NAME
+
+    NAME            shift and go to state 55
+
+
+state 46
+
+    (8) expression -> AT LBRACKET expression RBRACKET .
+
+    LBRACKET        reduce using rule 8 (expression -> AT LBRACKET expression RBRACKET .)
+    SIGDOT          reduce using rule 8 (expression -> AT LBRACKET expression RBRACKET .)
+    DOUDOT          reduce using rule 8 (expression -> AT LBRACKET expression RBRACKET .)
+    COMMA           reduce using rule 8 (expression -> AT LBRACKET expression RBRACKET .)
+    COLON           reduce using rule 8 (expression -> AT LBRACKET expression RBRACKET .)
+    $end            reduce using rule 8 (expression -> AT LBRACKET expression RBRACKET .)
+    RBRACKET        reduce using rule 8 (expression -> AT LBRACKET expression RBRACKET .)
+    EQUAL           reduce using rule 8 (expression -> AT LBRACKET expression RBRACKET .)
+    NOTEQ           reduce using rule 8 (expression -> AT LBRACKET expression RBRACKET .)
+    LESST           reduce using rule 8 (expression -> AT LBRACKET expression RBRACKET .)
+    NOTGT           reduce using rule 8 (expression -> AT LBRACKET expression RBRACKET .)
+    GREAT           reduce using rule 8 (expression -> AT LBRACKET expression RBRACKET .)
+    NOTLT           reduce using rule 8 (expression -> AT LBRACKET expression RBRACKET .)
+    RPARE           reduce using rule 8 (expression -> AT LBRACKET expression RBRACKET .)
+
+
+state 47
+
+    (12) expression -> QMARK LPARE condition RPARE .
+
+    LBRACKET        reduce using rule 12 (expression -> QMARK LPARE condition RPARE .)
+    SIGDOT          reduce using rule 12 (expression -> QMARK LPARE condition RPARE .)
+    DOUDOT          reduce using rule 12 (expression -> QMARK LPARE condition RPARE .)
+    COMMA           reduce using rule 12 (expression -> QMARK LPARE condition RPARE .)
+    COLON           reduce using rule 12 (expression -> QMARK LPARE condition RPARE .)
+    $end            reduce using rule 12 (expression -> QMARK LPARE condition RPARE .)
+    RBRACKET        reduce using rule 12 (expression -> QMARK LPARE condition RPARE .)
+    EQUAL           reduce using rule 12 (expression -> QMARK LPARE condition RPARE .)
+    NOTEQ           reduce using rule 12 (expression -> QMARK LPARE condition RPARE .)
+    LESST           reduce using rule 12 (expression -> QMARK LPARE condition RPARE .)
+    NOTGT           reduce using rule 12 (expression -> QMARK LPARE condition RPARE .)
+    GREAT           reduce using rule 12 (expression -> QMARK LPARE condition RPARE .)
+    NOTLT           reduce using rule 12 (expression -> QMARK LPARE condition RPARE .)
+    RPARE           reduce using rule 12 (expression -> QMARK LPARE condition RPARE .)
+
+
+state 48
+
+    (13) condition -> expression EQUAL . expression
+    (4) expression -> . ROOT LBRACKET expression RBRACKET
+    (5) expression -> . ROOT SIGDOT NAME
+    (6) expression -> . expression LBRACKET expression RBRACKET
+    (7) expression -> . expression SIGDOT NAME
+    (8) expression -> . AT LBRACKET expression RBRACKET
+    (9) expression -> . AT SIGDOT NAME
+    (10) expression -> . LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> . LBRACKET expression RBRACKET SIGDOT NAME
+    (12) expression -> . QMARK LPARE condition RPARE
+    (19) expression -> . NAME DOUDOT NAME
+    (20) expression -> . expression DOUDOT NAME
+    (21) expression -> . NUMBER COMMA NUMBER
+    (22) expression -> . expression COMMA NUMBER
+    (23) expression -> . ALLFLD
+    (24) expression -> . expression COLON expression
+    (25) expression -> . QUOTE NAME QUOTE
+    (26) expression -> . NUMBER
+
+    ROOT            shift and go to state 20
+    AT              shift and go to state 7
+    LBRACKET        shift and go to state 5
+    QMARK           shift and go to state 8
+    NAME            shift and go to state 6
+    NUMBER          shift and go to state 9
+    ALLFLD          shift and go to state 10
+    QUOTE           shift and go to state 11
+
+    expression                     shift and go to state 56
+
+state 49
+
+    (14) condition -> expression NOTEQ . expression
+    (4) expression -> . ROOT LBRACKET expression RBRACKET
+    (5) expression -> . ROOT SIGDOT NAME
+    (6) expression -> . expression LBRACKET expression RBRACKET
+    (7) expression -> . expression SIGDOT NAME
+    (8) expression -> . AT LBRACKET expression RBRACKET
+    (9) expression -> . AT SIGDOT NAME
+    (10) expression -> . LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> . LBRACKET expression RBRACKET SIGDOT NAME
+    (12) expression -> . QMARK LPARE condition RPARE
+    (19) expression -> . NAME DOUDOT NAME
+    (20) expression -> . expression DOUDOT NAME
+    (21) expression -> . NUMBER COMMA NUMBER
+    (22) expression -> . expression COMMA NUMBER
+    (23) expression -> . ALLFLD
+    (24) expression -> . expression COLON expression
+    (25) expression -> . QUOTE NAME QUOTE
+    (26) expression -> . NUMBER
+
+    ROOT            shift and go to state 20
+    AT              shift and go to state 7
+    LBRACKET        shift and go to state 5
+    QMARK           shift and go to state 8
+    NAME            shift and go to state 6
+    NUMBER          shift and go to state 9
+    ALLFLD          shift and go to state 10
+    QUOTE           shift and go to state 11
+
+    expression                     shift and go to state 57
+
+state 50
+
+    (15) condition -> expression LESST . expression
+    (4) expression -> . ROOT LBRACKET expression RBRACKET
+    (5) expression -> . ROOT SIGDOT NAME
+    (6) expression -> . expression LBRACKET expression RBRACKET
+    (7) expression -> . expression SIGDOT NAME
+    (8) expression -> . AT LBRACKET expression RBRACKET
+    (9) expression -> . AT SIGDOT NAME
+    (10) expression -> . LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> . LBRACKET expression RBRACKET SIGDOT NAME
+    (12) expression -> . QMARK LPARE condition RPARE
+    (19) expression -> . NAME DOUDOT NAME
+    (20) expression -> . expression DOUDOT NAME
+    (21) expression -> . NUMBER COMMA NUMBER
+    (22) expression -> . expression COMMA NUMBER
+    (23) expression -> . ALLFLD
+    (24) expression -> . expression COLON expression
+    (25) expression -> . QUOTE NAME QUOTE
+    (26) expression -> . NUMBER
+
+    ROOT            shift and go to state 20
+    AT              shift and go to state 7
+    LBRACKET        shift and go to state 5
+    QMARK           shift and go to state 8
+    NAME            shift and go to state 6
+    NUMBER          shift and go to state 9
+    ALLFLD          shift and go to state 10
+    QUOTE           shift and go to state 11
+
+    expression                     shift and go to state 58
+
+state 51
+
+    (16) condition -> expression NOTGT . expression
+    (4) expression -> . ROOT LBRACKET expression RBRACKET
+    (5) expression -> . ROOT SIGDOT NAME
+    (6) expression -> . expression LBRACKET expression RBRACKET
+    (7) expression -> . expression SIGDOT NAME
+    (8) expression -> . AT LBRACKET expression RBRACKET
+    (9) expression -> . AT SIGDOT NAME
+    (10) expression -> . LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> . LBRACKET expression RBRACKET SIGDOT NAME
+    (12) expression -> . QMARK LPARE condition RPARE
+    (19) expression -> . NAME DOUDOT NAME
+    (20) expression -> . expression DOUDOT NAME
+    (21) expression -> . NUMBER COMMA NUMBER
+    (22) expression -> . expression COMMA NUMBER
+    (23) expression -> . ALLFLD
+    (24) expression -> . expression COLON expression
+    (25) expression -> . QUOTE NAME QUOTE
+    (26) expression -> . NUMBER
+
+    ROOT            shift and go to state 20
+    AT              shift and go to state 7
+    LBRACKET        shift and go to state 5
+    QMARK           shift and go to state 8
+    NAME            shift and go to state 6
+    NUMBER          shift and go to state 9
+    ALLFLD          shift and go to state 10
+    QUOTE           shift and go to state 11
+
+    expression                     shift and go to state 59
+
+state 52
+
+    (17) condition -> expression GREAT . expression
+    (4) expression -> . ROOT LBRACKET expression RBRACKET
+    (5) expression -> . ROOT SIGDOT NAME
+    (6) expression -> . expression LBRACKET expression RBRACKET
+    (7) expression -> . expression SIGDOT NAME
+    (8) expression -> . AT LBRACKET expression RBRACKET
+    (9) expression -> . AT SIGDOT NAME
+    (10) expression -> . LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> . LBRACKET expression RBRACKET SIGDOT NAME
+    (12) expression -> . QMARK LPARE condition RPARE
+    (19) expression -> . NAME DOUDOT NAME
+    (20) expression -> . expression DOUDOT NAME
+    (21) expression -> . NUMBER COMMA NUMBER
+    (22) expression -> . expression COMMA NUMBER
+    (23) expression -> . ALLFLD
+    (24) expression -> . expression COLON expression
+    (25) expression -> . QUOTE NAME QUOTE
+    (26) expression -> . NUMBER
+
+    ROOT            shift and go to state 20
+    AT              shift and go to state 7
+    LBRACKET        shift and go to state 5
+    QMARK           shift and go to state 8
+    NAME            shift and go to state 6
+    NUMBER          shift and go to state 9
+    ALLFLD          shift and go to state 10
+    QUOTE           shift and go to state 11
+
+    expression                     shift and go to state 60
+
+state 53
+
+    (18) condition -> expression NOTLT . expression
+    (4) expression -> . ROOT LBRACKET expression RBRACKET
+    (5) expression -> . ROOT SIGDOT NAME
+    (6) expression -> . expression LBRACKET expression RBRACKET
+    (7) expression -> . expression SIGDOT NAME
+    (8) expression -> . AT LBRACKET expression RBRACKET
+    (9) expression -> . AT SIGDOT NAME
+    (10) expression -> . LBRACKET expression RBRACKET LBRACKET expression RBRACKET
+    (11) expression -> . LBRACKET expression RBRACKET SIGDOT NAME
+    (12) expression -> . QMARK LPARE condition RPARE
+    (19) expression -> . NAME DOUDOT NAME
+    (20) expression -> . expression DOUDOT NAME
+    (21) expression -> . NUMBER COMMA NUMBER
+    (22) expression -> . expression COMMA NUMBER
+    (23) expression -> . ALLFLD
+    (24) expression -> . expression COLON expression
+    (25) expression -> . QUOTE NAME QUOTE
+    (26) expression -> . NUMBER
+
+    ROOT            shift and go to state 20
+    AT              shift and go to state 7
+    LBRACKET        shift and go to state 5
+    QMARK           shift and go to state 8
+    NAME            shift and go to state 6
+    NUMBER          shift and go to state 9
+    ALLFLD          shift and go to state 10
+    QUOTE           shift and go to state 11
+
+    expression                     shift and go to state 61
+
+state 54
+
+    (10) expression -> LBRACKET expression RBRACKET LBRACKET expression . RBRACKET
+    (6) expression -> expression . LBRACKET expression RBRACKET
+    (7) expression -> expression . SIGDOT NAME
+    (20) expression -> expression . DOUDOT NAME
+    (22) expression -> expression . COMMA NUMBER
+    (24) expression -> expression . COLON expression
+
+    RBRACKET        shift and go to state 62
+    LBRACKET        shift and go to state 12
+    SIGDOT          shift and go to state 13
+    DOUDOT          shift and go to state 14
+    COMMA           shift and go to state 15
+    COLON           shift and go to state 16
+
+
+state 55
+
+    (11) expression -> LBRACKET expression RBRACKET SIGDOT NAME .
+
+    LBRACKET        reduce using rule 11 (expression -> LBRACKET expression RBRACKET SIGDOT NAME .)
+    SIGDOT          reduce using rule 11 (expression -> LBRACKET expression RBRACKET SIGDOT NAME .)
+    DOUDOT          reduce using rule 11 (expression -> LBRACKET expression RBRACKET SIGDOT NAME .)
+    COMMA           reduce using rule 11 (expression -> LBRACKET expression RBRACKET SIGDOT NAME .)
+    COLON           reduce using rule 11 (expression -> LBRACKET expression RBRACKET SIGDOT NAME .)
+    $end            reduce using rule 11 (expression -> LBRACKET expression RBRACKET SIGDOT NAME .)
+    RBRACKET        reduce using rule 11 (expression -> LBRACKET expression RBRACKET SIGDOT NAME .)
+    EQUAL           reduce using rule 11 (expression -> LBRACKET expression RBRACKET SIGDOT NAME .)
+    NOTEQ           reduce using rule 11 (expression -> LBRACKET expression RBRACKET SIGDOT NAME .)
+    LESST           reduce using rule 11 (expression -> LBRACKET expression RBRACKET SIGDOT NAME .)
+    NOTGT           reduce using rule 11 (expression -> LBRACKET expression RBRACKET SIGDOT NAME .)
+    GREAT           reduce using rule 11 (expression -> LBRACKET expression RBRACKET SIGDOT NAME .)
+    NOTLT           reduce using rule 11 (expression -> LBRACKET expression RBRACKET SIGDOT NAME .)
+    RPARE           reduce using rule 11 (expression -> LBRACKET expression RBRACKET SIGDOT NAME .)
+
+
+state 56
+
+    (13) condition -> expression EQUAL expression .
+    (6) expression -> expression . LBRACKET expression RBRACKET
+    (7) expression -> expression . SIGDOT NAME
+    (20) expression -> expression . DOUDOT NAME
+    (22) expression -> expression . COMMA NUMBER
+    (24) expression -> expression . COLON expression
+
+    RPARE           reduce using rule 13 (condition -> expression EQUAL expression .)
+    LBRACKET        shift and go to state 12
+    SIGDOT          shift and go to state 13
+    DOUDOT          shift and go to state 14
+    COMMA           shift and go to state 15
+    COLON           shift and go to state 16
+
+
+state 57
+
+    (14) condition -> expression NOTEQ expression .
+    (6) expression -> expression . LBRACKET expression RBRACKET
+    (7) expression -> expression . SIGDOT NAME
+    (20) expression -> expression . DOUDOT NAME
+    (22) expression -> expression . COMMA NUMBER
+    (24) expression -> expression . COLON expression
+
+    RPARE           reduce using rule 14 (condition -> expression NOTEQ expression .)
+    LBRACKET        shift and go to state 12
+    SIGDOT          shift and go to state 13
+    DOUDOT          shift and go to state 14
+    COMMA           shift and go to state 15
+    COLON           shift and go to state 16
+
+
+state 58
+
+    (15) condition -> expression LESST expression .
+    (6) expression -> expression . LBRACKET expression RBRACKET
+    (7) expression -> expression . SIGDOT NAME
+    (20) expression -> expression . DOUDOT NAME
+    (22) expression -> expression . COMMA NUMBER
+    (24) expression -> expression . COLON expression
+
+    RPARE           reduce using rule 15 (condition -> expression LESST expression .)
+    LBRACKET        shift and go to state 12
+    SIGDOT          shift and go to state 13
+    DOUDOT          shift and go to state 14
+    COMMA           shift and go to state 15
+    COLON           shift and go to state 16
+
+
+state 59
+
+    (16) condition -> expression NOTGT expression .
+    (6) expression -> expression . LBRACKET expression RBRACKET
+    (7) expression -> expression . SIGDOT NAME
+    (20) expression -> expression . DOUDOT NAME
+    (22) expression -> expression . COMMA NUMBER
+    (24) expression -> expression . COLON expression
+
+    RPARE           reduce using rule 16 (condition -> expression NOTGT expression .)
+    LBRACKET        shift and go to state 12
+    SIGDOT          shift and go to state 13
+    DOUDOT          shift and go to state 14
+    COMMA           shift and go to state 15
+    COLON           shift and go to state 16
+
+
+state 60
+
+    (17) condition -> expression GREAT expression .
+    (6) expression -> expression . LBRACKET expression RBRACKET
+    (7) expression -> expression . SIGDOT NAME
+    (20) expression -> expression . DOUDOT NAME
+    (22) expression -> expression . COMMA NUMBER
+    (24) expression -> expression . COLON expression
+
+    RPARE           reduce using rule 17 (condition -> expression GREAT expression .)
+    LBRACKET        shift and go to state 12
+    SIGDOT          shift and go to state 13
+    DOUDOT          shift and go to state 14
+    COMMA           shift and go to state 15
+    COLON           shift and go to state 16
+
+
+state 61
+
+    (18) condition -> expression NOTLT expression .
+    (6) expression -> expression . LBRACKET expression RBRACKET
+    (7) expression -> expression . SIGDOT NAME
+    (20) expression -> expression . DOUDOT NAME
+    (22) expression -> expression . COMMA NUMBER
+    (24) expression -> expression . COLON expression
+
+    RPARE           reduce using rule 18 (condition -> expression NOTLT expression .)
+    LBRACKET        shift and go to state 12
+    SIGDOT          shift and go to state 13
+    DOUDOT          shift and go to state 14
+    COMMA           shift and go to state 15
+    COLON           shift and go to state 16
+
+
+state 62
+
+    (10) expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .
+
+    LBRACKET        reduce using rule 10 (expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .)
+    SIGDOT          reduce using rule 10 (expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .)
+    DOUDOT          reduce using rule 10 (expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .)
+    COMMA           reduce using rule 10 (expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .)
+    COLON           reduce using rule 10 (expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .)
+    $end            reduce using rule 10 (expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .)
+    RBRACKET        reduce using rule 10 (expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .)
+    EQUAL           reduce using rule 10 (expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .)
+    NOTEQ           reduce using rule 10 (expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .)
+    LESST           reduce using rule 10 (expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .)
+    NOTGT           reduce using rule 10 (expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .)
+    GREAT           reduce using rule 10 (expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .)
+    NOTLT           reduce using rule 10 (expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .)
+    RPARE           reduce using rule 10 (expression -> LBRACKET expression RBRACKET LBRACKET expression RBRACKET .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for COMMA in state 9 resolved as shift
+WARNING: shift/reduce conflict for LBRACKET in state 31 resolved as shift
+WARNING: shift/reduce conflict for SIGDOT in state 31 resolved as shift
+WARNING: shift/reduce conflict for DOUDOT in state 31 resolved as shift
+WARNING: shift/reduce conflict for COMMA in state 31 resolved as shift
+WARNING: shift/reduce conflict for COLON in state 31 resolved as shift
