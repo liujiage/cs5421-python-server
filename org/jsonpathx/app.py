@@ -66,9 +66,93 @@ def expressions():
         },
         {
             'id': 2,
-            'expression': '[]',
-            'example': 'movie[0]',
+            'expression': '.property',
+            'example': '$.movie',
             'description': 'Select the child object'
+        },
+        {
+            'id': 3,
+            'expression': '["property"]',
+            'example': '$["movie"]',
+            'description': 'Select the child object'
+        },
+        {
+            'id': 4,
+            'expression': '*',
+            'example': '$.[*]',
+            'description': 'Select all fields of an element'
+        },
+        {
+            'id': 5,
+            'expression': '..property',
+            'example': '$["movie"]..year',
+            'description': 'Select all values of the given property in the structure.'
+        },
+        {   
+            'id': 6,
+            'expression': '[index]',
+            'example': '$["movie"][0]',
+            'description': 'Select the child element at index.'
+        },
+        {
+            'id': 7,
+            'expression': '[index, index]',
+            'example': '$["movie"][0,1,2]',
+            'description': 'Select the child elements at indexes.'
+        },
+        {
+            'id': 8,
+            'expression': '[start:end]',
+            'example': '$["movie"][0:2]',
+            'description': 'Similar to Python list slicing syntax. Return child elements at positions start through end.'
+        },
+        {
+            'id': 9,
+            'expression': '@',
+            'example': '$["movie"][?(@.year>1997)]',
+            'description': 'Reference to current object in filtering expressions.'
+        },
+        {
+            'id': 10,
+            'expression': '?',
+            'example': '$["movie"][?(@.year>1997)]',
+            'description': 'Apply a filter to selected element.'
+        },
+        {
+            'id': 11,
+            'expression': '==',
+            'example': '$["movie"][?(@.year==1997)]',
+            'description': 'Equal'
+        },
+        {
+            'id': 12,
+            'expression': '!=',
+            'example': '$["movie"][?(@.year!=1997)]',
+            'description': 'Not equal'
+        },
+        {
+            'id': 13,
+            'expression': '<',
+            'example': '$["movie"][?(@.year<1997)]',
+            'description': 'Less than'
+        },
+        {
+            'id': 14,
+            'expression': '<=',
+            'example': '$["movie"][?(@.year>1997)]',
+            'description': 'Not greater than'
+        },
+        {
+            'id': 15,
+            'expression': '>',
+            'example': '$["movie"][?(@.year>1997)]',
+            'description': 'Greater than'
+        },
+        {
+            'id': 16,
+            'expression': '>=',
+            'example': '$["movie"][?(@.year>=1997)]',
+            'description': 'Not less than'
         }
     ]
     return {
