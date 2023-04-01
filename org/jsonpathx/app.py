@@ -1,5 +1,5 @@
 from flask import Flask, request
-from helper import json_xpath, visualize
+from helper import json_xpath, visualize, jsonx_path_lalr
 import json
 import codecs
 
@@ -15,9 +15,9 @@ def query():
     try:
         source = req.get('source')
         query = req.get('query')
-        res = json_xpath(json.loads(source), query)
-        print(type(json.loads(source)))
-        if res[0] != None:
+        # res = json_xpath(json.loads(source), query)
+        res = jsonx_path_lalr(json.loads(source), query)
+        if res[0] != None and res != "Error occurs":
             return {
                 'error': 0,
                 'error_msg': '', 
